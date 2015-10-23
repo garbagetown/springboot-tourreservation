@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <meta charset="UTF-8"/>
+    <title>ツアー予約システム</title>
+</head>
+<body>
+<div layout:fragment="content">
+<span th:utext="#{label.tr.managecustomer.createCompleteMessage(${customer.customerCode})}"></span>
+</div>
+</body>
+</html>

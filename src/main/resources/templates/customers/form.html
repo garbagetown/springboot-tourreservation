@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <meta charset="UTF-8"/>
+    <title>ツアー予約システム</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <form th:action="@{/customers/create}" th:object="${customerForm}" method="post">
+        <ul th:if="${#fields.hasAnyErrors()}">
+            <li th:each="e:${#fields.detailedErrors()}" th:text="${e}"></li>
+        </ul>
+        フリガナ (必須)
+        <input type="text" name="customerKana" th:field="*{customerKana}" th:errorclass="fieldError" />
+        ( 全角カタカナのみ )<br/>
+        氏名 (必須)
+        <input type="text" name="customerName" th:field="*{customerName}" th:errorclass="fieldError" />
+        ( 全角のみ )<br/>
+        誕生日 (必須)
+        <select name="customerBirthYear" th:field="*{customerBirthYear}" th:errorclass="fieldError">
+            <option th:each="m : ${CL_BIRTH_YEAR}" th:value="${m.value}" th:text="${m.key}"></option>
+        </select>年
+        <select name="customerBirthMonth" th:field="*{customerBirthMonth}" th:errorclass="fieldError">
+            <option th:each="m : ${CL_MONTH}" th:value="${m.value}" th:text="${m.key}"></option>
+        </select>月
+        <select name="customerBirthDay" th:field="*{customerBirthDay}" th:errorclass="fieldError">
+            <option th:each="m : ${CL_DAY}" th:value="${m.value}" th:text="${m.key}"></option>
+        </select>日<br/>
+        職業 (必須)
+        <input type="text" name="customerJob" th:field="*{customerJob}" th:errorclass="fieldError" /><br/>
+        Eメール
+        <input type="text" name="customerMail" th:field="*{customerMail}" th:errorclass="fieldError" /><br/>
+        電話番号 (必須)
+        <input type="text" name="customerTel" th:field="*{customerTel}" th:errorclass="fieldError" />
+        ( 半角のみ10桁～13桁 )  例：01-234506789<br/>
+        郵便番号 (必須)
+        <input type="text" name="customerPost" th:field="*{customerPost}" th:errorclass="fieldError" />
+        ( 半角のみ半角英数字4桁～20桁 )  例: 262-0002<br/>
+        住所 (必須)
+        <input type="text" name="customerAdd" th:field="*{customerAdd}" th:errorclass="fieldError" /><br/>
+        パスワード (必須)
+        <input type="password" name="customerPass" th:field="*{customerPass}" th:errorclass="fieldError" />
+        ( 半角のみ半角英数字4桁～20桁 )<br/>
+        確認パスワード (必須)
+        <input type="password" name="customerPassConfirm" th:field="*{customerPassConfirm}" th:errorclass="fieldError" /><br/>
+        <button name="confirm">確認</button>
+        <button type="reset">リセット</button>
+    </form>
+</div>
+</body>
+</html>

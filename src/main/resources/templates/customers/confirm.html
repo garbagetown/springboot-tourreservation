@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <meta charset="UTF-8"/>
+    <title>ツアー予約システム</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <form th:action="@{/customers/create}" th:object="${customerForm}" method="post">
+        フリガナ
+        <span th:text="*{customerKana}" th:remove="tag" /><br/>
+        氏名
+        <span th:text="*{customerName}" th:remove="tag" /><br/>
+        誕生日
+        <span th:text="*{customerBirthYear}" th:remove="tag" />年
+        <span th:text="*{customerBirthMonth}" th:remove="tag" />月
+        <span th:text="*{customerBirthDay}" th:remove="tag" />日<br/>
+        職業
+        <span th:text="*{customerJob}" th:remove="tag" /><br/>
+        Eメール
+        <span th:text="*{customerMail}" th:remove="tag" /><br/>
+        電話番号
+        <span th:text="*{customerTel}" th:remove="tag" /><br/>
+        郵便番号
+        <span th:text="*{customerPost}" th:remove="tag" /><br/>
+        住所
+        <span th:text="*{customerAdd}" th:remove="tag" /><br/>
+        確認パスワード
+        ********<br/>
+
+        <input type="hidden" name="customerKana" th:field="*{customerKana}" />
+        <input type="hidden" name="customerName" th:field="*{customerName}" />
+        <input type="hidden" name="customerBirthYear" th:field="*{customerBirthYear}" />
+        <input type="hidden" name="customerBirthMonth" th:field="*{customerBirthMonth}" />
+        <input type="hidden" name="customerBirthDay" th:field="*{customerBirthDay}" />
+        <input type="hidden" name="customerJob" th:field="*{customerJob}" />
+        <input type="hidden" name="customerMail" th:field="*{customerMail}" />
+        <input type="hidden" name="customerTel" th:field="*{customerTel}" />
+        <input type="hidden" name="customerPost" th:field="*{customerPost}" />
+        <input type="hidden" name="customerAdd" th:field="*{customerAdd}" />
+        <input type="hidden" name="customerPass" th:field="*{customerPass}" />
+        <input type="hidden" name="customerPassConfirm" th:field="*{customerPassConfirm}" />
+        <button name="redo">戻る</button>
+        <button>登録</button>
+    </form>
+</div>
+</body>
+</html>
