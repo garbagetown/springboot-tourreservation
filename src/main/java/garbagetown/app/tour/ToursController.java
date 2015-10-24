@@ -68,6 +68,7 @@ public class ToursController {
 
         Page<Tourinfo> page = service.search(criteria, pageable);
         model.addAttribute("page", page);
+        model.addAttribute("form", form);
 
         return "tours/form";
     }
