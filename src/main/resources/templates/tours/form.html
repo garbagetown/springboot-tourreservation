@@ -46,6 +46,32 @@
         </select><br/>
         <button>検索</button>
     </form>
+
+    <table th:if="${page}">
+        <thead>
+            <tr>
+                <td>連番</td>
+                <td>ツアー名</td>
+                <td>出発日</td>
+                <td>日数</td>
+                <td>出発地</td>
+                <td>目的地</td>
+                <td>基本料金</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="tour,status : ${page.content}">
+                <td th:text="${status.count}">連番</td>
+                <td th:text="${tour.tourName}">ツアー名</td>
+                <td th:text="${#dates.format(tour.depDay, 'yyyy年MM月dd日')}">出発日</td>
+                <td th:text="${tour.tourDays}">日数</td>
+                <td th:text="${tour.departure.depName}">出発地</td>
+                <td th:text="${tour.arrival.arrName}">目的地</td>
+                <td th:text="${#numbers.formatInteger(tour.basePrice, 3, 'COMMA') + '円'}">基本料金</td>
+            </tr>
+        </tbody>
+    </table>
+
 </div>
 </body>
 </html>
