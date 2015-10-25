@@ -50,7 +50,8 @@
     <div th:if="${page}">
         <ul>
             <li>
-                <a href="tours" th:href="@{/tours/search(page='0', size=${page.size},
+                <a href="tours" th:href="@{/tours/search(
+                   page='0', size=${page.size},
                    adultCount=${form.adultCount},
                    arrCode=${form.arrCode},
                    basePrice=${form.basePrice},
@@ -63,7 +64,8 @@
                 )}">&lt;&lt;</a>
             </li>
             <li>
-                <a href="tours" th:href="@{/tours/search(page=${page.number - 1}, size=${page.size},
+                <a href="tours" th:href="@{/tours/search(
+                   page=${page.number - 1}, size=${page.size},
                    adultCount=${form.adultCount},
                    arrCode=${form.arrCode},
                    basePrice=${form.basePrice},
@@ -76,7 +78,8 @@
                 )}">&lt;</a>
             </li>
             <li th:each="i : ${#numbers.sequence(0, page.totalPages - 1)}">
-                <a href="tours" th:href="@{/tours/search(page=${i}, size=${page.size},
+                <a href="tours" th:href="@{/tours/search(
+                   page=${i}, size=${page.size},
                    adultCount=${form.adultCount},
                    arrCode=${form.arrCode},
                    basePrice=${form.basePrice},
@@ -89,7 +92,8 @@
                 )}" th:text="${i + 1}">0</a>
             </li>
             <li>
-                <a href="tours" th:href="@{/tours/search(page=${page.number + 1}, size=${page.size},
+                <a href="tours" th:href="@{/tours/search(
+                   page=${page.number + 1}, size=${page.size},
                    adultCount=${form.adultCount},
                    arrCode=${form.arrCode},
                    basePrice=${form.basePrice},
@@ -102,7 +106,8 @@
                 )}">&gt;</a>
             </li>
             <li>
-                <a href="tours" th:href="@{/tours/search(page=${page.totalPages - 1}, size=${page.size},
+                <a href="tours" th:href="@{/tours/search(
+                   page=${page.totalPages - 1}, size=${page.size},
                    adultCount=${form.adultCount},
                    arrCode=${form.arrCode},
                    basePrice=${form.basePrice},
@@ -132,7 +137,13 @@
         <tbody>
             <tr th:each="tour,status : ${page.content}">
                 <td th:text="${status.count}">連番</td>
-                <td th:text="${tour.tourName}">ツアー名</td>
+                <td>
+                    <a href="tours" th:href="@{'/tours/' + ${tour.tourCode}(
+                       form,
+                       adultCount=${form.adultCount},
+                       childCount=${form.childCount}
+                    )}" th:text="${tour.tourName}">ツアー名</a>
+                </td>
                 <td th:text="${#dates.format(tour.depDay, 'yyyy年MM月dd日')}">出発日</td>
                 <td th:text="${tour.tourDays}">日数</td>
                 <td th:text="${tour.departure.depName}">出発地</td>
