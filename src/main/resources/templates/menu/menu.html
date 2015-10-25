@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
       layout:decorator="layout">
 <head>
@@ -8,11 +9,22 @@
 </head>
 <body>
 <div layout:fragment="content">
-<ul>
-    <li><a href="tours" th:href="@{tours(initForm)}">ツアー検索する</a></li>
-    <li><a href="login" th:href="@{login}">ログインする</a></li>
-    <li><a href="customers/create" th:href="@{customers/create}">顧客登録する</a></li>
-</ul>
+    <div>
+        <ul>
+            <li><a href="tours" th:href="@{tours(initForm)}">ツアー検索する</a></li>
+        </ul>
+    </div>
+    <div sec:authorize="!hasRole('ROLE_USER')">
+        <ul>
+            <li><a href="login" th:href="@{login}">ログインする</a></li>
+            <li><a href="customers/create" th:href="@{customers/create}">顧客登録する</a></li>
+        </ul>
+    </div>
+    <div sec:authorize="hasRole('ROLE_USER')">
+        <ul>
+            <li>予約を照会する</li>
+        </ul>
+    </div>
 </div>
 </body>
 </html>
