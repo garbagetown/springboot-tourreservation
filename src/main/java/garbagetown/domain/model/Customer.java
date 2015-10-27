@@ -71,4 +71,8 @@ public class Customer implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
     private List<Reserve> reserves;
+
+    public Customer(String customerCode) {
+        this.customerCode = customerCode;
+    }
 }
