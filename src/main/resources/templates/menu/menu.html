@@ -22,7 +22,7 @@
     </div>
     <div sec:authorize="hasRole('ROLE_USER')">
         <ul>
-            <li>予約を照会する</li>
+            <li><a href="/reservations/me" th:href="@{/reservations/me}">予約を照会する</a></li>
         </ul>
     </div>
 </div>

@@ -8,4 +8,6 @@ import garbagetown.domain.model.Tourinfo;
 public interface TourinfoSharedService {
 
     Tourinfo findOne(String tourCode);
+
+    Boolean isOverPaymentLimit(Tourinfo tourinfo);
 }
