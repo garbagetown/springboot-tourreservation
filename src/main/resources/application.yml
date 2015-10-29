@@ -8,8 +8,8 @@ spring:
     url: jdbc:postgresql://192.168.99.100:5432/tourreserve
     username: postgres
     password: P0stgres
-
   thymeleaf.cache: false
+  messages.basename: i18n/application-messages
 
 security.basic.enabled: false
 
