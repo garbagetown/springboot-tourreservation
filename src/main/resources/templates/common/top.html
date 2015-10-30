@@ -8,7 +8,8 @@
 </head>
 <body>
     <div layout:fragment="top">
-        <div sec:authorize="!hasRole('ROLE_USER')" th:text="#{label.tr.common.notLoginMessage}" />
+        <div sec:authorize="!hasRole('ROLE_USER')" th:text="#{label.tr.common.notLoginMessage}"
+             class="alert alert-info" role="alert" />
         <div sec:authorize="hasRole('ROLE_USER')">
             <form th:action="@{/logout}">
                 <button th:text="#{label.tr.common.logout}" />

@@ -9,57 +9,100 @@
 <div layout:fragment="content">
     <div layout:include="common/top" />
     <h2 th:text="#{label.tr.searchtour.searchTourMessage}" />
-    <div th:utext="#{label.tr.searchtour.searchTourFlowMessage}"/>
-    <div th:utext="#{label.tr.searchtour.searchTourInstructionsMessage}"/>
-    <div th:text="#{label.tr.searchtour.SearchCriteriaTourMessage}"/>
-    <form th:action="@{/tours/search}" th:object="${tourForm}" method="get">
-        <span th:text="#{label.tr.common.depDate}" />
-        <select name="depYear" th:field="*{depYear}" th:errorclass="fieldError">
-            <option th:each="m : ${CL_DEP_YEAR}" th:value="${m.key}" th:text="${m.value}"></option>
-        </select>
-        <span th:text="#{label.tr.common.year}" />
-        <select name="depMonth" th:field="*{depMonth}" th:errorclass="fieldError">
-            <option th:each="m : ${CL_MONTH}" th:value="${m.key}" th:text="${m.value}"></option>
-        </select>
-        <span th:text="#{label.tr.common.month}" />
-        <select name="depDay" th:field="*{depDay}" th:errorclass="fieldError">
-            <option th:each="m : ${CL_DAY}" th:value="${m.key}" th:text="${m.value}"></option>
-        </select>
-        <span th:text="#{label.tr.common.day}" />
-        (<span th:text="#{label.tr.searchtour.depDateRestrictMessage}" />)<br/>
-        <span th:text="#{label.tr.common.tourDays}" />
-        <select name="tourDays" th:field="*{tourDays}" th:errorclass="fieldError">
-            <option th:each="m : ${CL_TOUR_DAYS}" th:value="${m.key}" th:text="${m.value}"></option>
-        </select><br/>
-        <span th:text="#{label.tr.common.depPlace}" />
-        <select name="depCode" th:field="*{depCode}" th:errorclass="fieldError">
-            <option th:each="m : ${CL_PREF}" th:value="${m.key}" th:text="${m.value}"></option>
-        </select><br/>
-        <span th:text="#{label.tr.common.arrPlace}" />
-        <select name="arrCode" th:field="*{arrCode}" th:errorclass="fieldError">>
-            <option th:each="m : ${CL_PREF}" th:value="${m.key}" th:text="${m.value}"></option>
-        </select><br/>
-        <span th:text="#{label.tr.common.persons}" /><br/>
-        <span th:text="#{label.tr.common.adult}" />
-        <select name="adultCount" th:field="*{adultCount}" th:errorclass="fieldError">
-            <option th:each="m : ${CL_ADULT_COUNT}" th:value="${m.key}" th:text="${m.value}"></option>
-        </select>
-        <span th:text="#{label.tr.common.person}" /><br/>
-        <span th:text="#{label.tr.common.child}" />
-        <select name="childCount" th:field="*{childCount}" th:errorclass="fieldError">
-            <option th:each="m : ${CL_CHILD_COUNT}" th:value="${m.key}" th:text="${m.value}"></option>
-        </select>
-        <span th:text="#{label.tr.common.person}" />
-        (<span th:text="#{label.tr.searchtour.personsRestrictMessage}" />)<br/>
-        <span th:text="#{label.tr.common.basePrice}" />
-        <select name="basePrice" th:field="*{basePrice}" th:errorclass="fieldError">>
-            <option th:each="m : ${CL_BASE_PRICE}" th:value="${m.key}" th:text="${m.value}"></option>
-        </select><br/>
-        <button th:text="#{label.tr.common.search}" />
+    <div class="panel panel-info">
+        <div th:utext="#{label.tr.searchtour.searchTourFlowMessage}"/>
+        <div th:utext="#{label.tr.searchtour.searchTourInstructionsMessage}"/>
+    </div>
+
+    <h3 th:text="#{label.tr.searchtour.SearchCriteriaTourMessage}"/>
+
+    <form class="form-horizontal" th:action="@{/tours/search}" th:object="${tourForm}" method="get">
+        <div class="form-group">
+            <label for="depYear" class="col-sm-2 control-label" th:text="#{label.tr.common.depDate}" />
+            <div class="col-sm-10">
+                <p>
+                    <select id="depYear" name="depYear" th:field="*{depYear}" th:errorclass="fieldError">
+                        <option th:each="m : ${CL_DEP_YEAR}" th:value="${m.key}" th:text="${m.value}"></option>
+                    </select>
+                    <span th:text="#{label.tr.common.year}" />
+                    <select name="depMonth" th:field="*{depMonth}" th:errorclass="fieldError">
+                        <option th:each="m : ${CL_MONTH}" th:value="${m.key}" th:text="${m.value}"></option>
+                    </select>
+                    <span th:text="#{label.tr.common.month}" />
+                    <select name="depDay" th:field="*{depDay}" th:errorclass="fieldError">
+                        <option th:each="m : ${CL_DAY}" th:value="${m.key}" th:text="${m.value}"></option>
+                    </select>
+                    <span th:text="#{label.tr.common.day}" />
+                </p>
+                <p>
+                    (<span th:text="#{label.tr.searchtour.depDateRestrictMessage}" />)
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="tourDays" class="col-sm-2 control-label" th:text="#{label.tr.common.tourDays}" />
+            <div class="col-sm-10">
+                <select id="tourDays" name="tourDays" th:field="*{tourDays}" th:errorclass="fieldError">
+                    <option th:each="m : ${CL_TOUR_DAYS}" th:value="${m.key}" th:text="${m.value}"></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="depPlace" class="col-sm-2 control-label" th:text="#{label.tr.common.depPlace}" />
+            <div class="col-sm-10">
+                <select id="depPlace" name="depCode" th:field="*{depCode}" th:errorclass="fieldError">
+                    <option th:each="m : ${CL_PREF}" th:value="${m.key}" th:text="${m.value}"></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="arrPlace" class="col-sm-2 control-label" th:text="#{label.tr.common.arrPlace}" />
+            <div class="col-sm-10">
+                <select id="arrPlace" name="arrCode" th:field="*{arrCode}" th:errorclass="fieldError">>
+                    <option th:each="m : ${CL_PREF}" th:value="${m.key}" th:text="${m.value}"></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="arrPlace" class="col-sm-2 control-label" th:text="#{label.tr.common.persons}" />
+            <div class="col-sm-10">
+                <p>
+                    <span th:text="#{label.tr.common.adult}" />
+                    <select name="adultCount" th:field="*{adultCount}" th:errorclass="fieldError">
+                        <option th:each="m : ${CL_ADULT_COUNT}" th:value="${m.key}" th:text="${m.value}"></option>
+                    </select>
+                    <span th:text="#{label.tr.common.person}" />
+                </p>
+                <p>
+                    <span th:text="#{label.tr.common.child}" />
+                    <select name="childCount" th:field="*{childCount}" th:errorclass="fieldError">
+                        <option th:each="m : ${CL_CHILD_COUNT}" th:value="${m.key}" th:text="${m.value}"></option>
+                    </select>
+                    <span th:text="#{label.tr.common.person}" />
+                </p>
+                <p>
+                    (<span th:text="#{label.tr.searchtour.personsRestrictMessage}" />)
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="basePrice" class="col-sm-2 control-label" th:text="#{label.tr.common.basePrice}" />
+            <div class="col-sm-10">
+                <select id="basePrice" name="basePrice" th:field="*{basePrice}" th:errorclass="fieldError">>
+                    <option th:each="m : ${CL_BASE_PRICE}" th:value="${m.key}" th:text="${m.value}"></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button class="btn btn-default" th:text="#{label.tr.common.search}" />
+            </div>
+        </div>
     </form>
 
     <div th:if="${page}">
-        <ul>
+        <nav>
+        <ul class="pagination">
             <li>
                 <a href="tours" th:href="@{/tours/search(
                    page='0', size=${page.size},
@@ -131,9 +174,10 @@
                 )}">&gt;&gt;</a>
             </li>
         </ul>
+        </nav>
     </div>
 
-    <table th:if="${page}">
+    <table th:if="${page}" class="table table-striped">
         <thead>
             <tr>
                 <td th:text="#{label.tr.common.idx}" />
