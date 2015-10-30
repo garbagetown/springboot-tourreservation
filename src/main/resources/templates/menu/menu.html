@@ -8,7 +8,7 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <div>
+    <div class="alert alert-info" role="alert">
         <span sec:authorize="!hasRole('ROLE_USER')" th:text="#{label.tr.common.notLoginMessage}" />
         <span th:text="#{label.tr.menu.menuMessage}" />
     </div>
