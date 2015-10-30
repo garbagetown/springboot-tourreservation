@@ -4,47 +4,58 @@
       layout:decorator="layout">
 <head>
     <meta charset="UTF-8"/>
-    <title>ツアー予約システム</title>
 </head>
 <body>
 <div layout:fragment="content">
+    <div layout:include="common/top" />
+    <h2 th:text="#{label.tr.searchtour.searchTourMessage}" />
+    <div th:utext="#{label.tr.searchtour.searchTourFlowMessage}"/>
+    <div th:utext="#{label.tr.searchtour.searchTourInstructionsMessage}"/>
+    <div th:text="#{label.tr.searchtour.SearchCriteriaTourMessage}"/>
     <form th:action="@{/tours/search}" th:object="${tourForm}" method="get">
-        出発日
+        <span th:text="#{label.tr.common.depDate}" />
         <select name="depYear" th:field="*{depYear}" th:errorclass="fieldError">
             <option th:each="m : ${CL_DEP_YEAR}" th:value="${m.key}" th:text="${m.value}"></option>
-        </select>年
+        </select>
+        <span th:text="#{label.tr.common.year}" />
         <select name="depMonth" th:field="*{depMonth}" th:errorclass="fieldError">
             <option th:each="m : ${CL_MONTH}" th:value="${m.key}" th:text="${m.value}"></option>
-        </select>月
+        </select>
+        <span th:text="#{label.tr.common.month}" />
         <select name="depDay" th:field="*{depDay}" th:errorclass="fieldError">
             <option th:each="m : ${CL_DAY}" th:value="${m.key}" th:text="${m.value}"></option>
-        </select>日<br/>
-        日数
+        </select>
+        <span th:text="#{label.tr.common.day}" />
+        (<span th:text="#{label.tr.searchtour.depDateRestrictMessage}" />)<br/>
+        <span th:text="#{label.tr.common.tourDays}" />
         <select name="tourDays" th:field="*{tourDays}" th:errorclass="fieldError">
             <option th:each="m : ${CL_TOUR_DAYS}" th:value="${m.key}" th:text="${m.value}"></option>
         </select><br/>
-        出発地
+        <span th:text="#{label.tr.common.depPlace}" />
         <select name="depCode" th:field="*{depCode}" th:errorclass="fieldError">
             <option th:each="m : ${CL_PREF}" th:value="${m.key}" th:text="${m.value}"></option>
         </select><br/>
-        目的地
+        <span th:text="#{label.tr.common.arrPlace}" />
         <select name="arrCode" th:field="*{arrCode}" th:errorclass="fieldError">>
             <option th:each="m : ${CL_PREF}" th:value="${m.key}" th:text="${m.value}"></option>
         </select><br/>
-        人数<br/>
-        大人
+        <span th:text="#{label.tr.common.persons}" /><br/>
+        <span th:text="#{label.tr.common.adult}" />
         <select name="adultCount" th:field="*{adultCount}" th:errorclass="fieldError">
             <option th:each="m : ${CL_ADULT_COUNT}" th:value="${m.key}" th:text="${m.value}"></option>
-        </select>人<br/>
-        子供人
+        </select>
+        <span th:text="#{label.tr.common.person}" /><br/>
+        <span th:text="#{label.tr.common.child}" />
         <select name="childCount" th:field="*{childCount}" th:errorclass="fieldError">
             <option th:each="m : ${CL_CHILD_COUNT}" th:value="${m.key}" th:text="${m.value}"></option>
-        </select>人<br/>
-        基本料金
+        </select>
+        <span th:text="#{label.tr.common.person}" />
+        (<span th:text="#{label.tr.searchtour.personsRestrictMessage}" />)<br/>
+        <span th:text="#{label.tr.common.basePrice}" />
         <select name="basePrice" th:field="*{basePrice}" th:errorclass="fieldError">>
             <option th:each="m : ${CL_BASE_PRICE}" th:value="${m.key}" th:text="${m.value}"></option>
         </select><br/>
-        <button>検索</button>
+        <button th:text="#{label.tr.common.search}" />
     </form>
 
     <div th:if="${page}">
@@ -125,30 +136,30 @@
     <table th:if="${page}">
         <thead>
             <tr>
-                <td>連番</td>
-                <td>ツアー名</td>
-                <td>出発日</td>
-                <td>日数</td>
-                <td>出発地</td>
-                <td>目的地</td>
-                <td>基本料金</td>
+                <td th:text="#{label.tr.common.idx}" />
+                <td th:text="#{label.tr.common.tourName}" />
+                <td th:text="#{label.tr.common.depDate}" />
+                <td th:text="#{label.tr.common.tourDays}" />
+                <td th:text="#{label.tr.common.depPlace}" />
+                <td th:text="#{label.tr.common.arrPlace}" />
+                <td th:text="#{label.tr.common.basePrice}" />
             </tr>
         </thead>
         <tbody>
             <tr th:each="tour,status : ${page.content}">
-                <td th:text="${status.count}">連番</td>
+                <td th:text="${status.count}" />
                 <td>
                     <a href="tours" th:href="@{'/tours/' + ${tour.tourCode}(
                        form,
                        adultCount=${form.adultCount},
                        childCount=${form.childCount}
-                    )}" th:text="${tour.tourName}">ツアー名</a>
+                    )}" th:text="${tour.tourName}" />
                 </td>
-                <td th:text="${#dates.format(tour.depDay, 'yyyy年MM月dd日')}">出発日</td>
-                <td th:text="${tour.tourDays}">日数</td>
-                <td th:text="${tour.departure.depName}">出発地</td>
-                <td th:text="${tour.arrival.arrName}">目的地</td>
-                <td th:text="${#numbers.formatInteger(tour.basePrice, 3, 'COMMA') + '円'}">基本料金</td>
+                <td th:text="${#dates.format(tour.depDay, #messages.msg('label.tr.common.datePattern'))}" />
+                <td th:text="${tour.tourDays}" />
+                <td th:text="${tour.departure.depName}" />
+                <td th:text="${tour.arrival.arrName}" />
+                <td th:text="${#numbers.formatInteger(tour.basePrice, 3, 'COMMA') + '円'}" />
             </tr>
         </tbody>
     </table>
