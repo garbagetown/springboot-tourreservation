@@ -10,19 +10,35 @@
 <body>
 <div layout:fragment="content">
     <div>
+        <span sec:authorize="!hasRole('ROLE_USER')" th:text="#{label.tr.common.notLoginMessage}" />
+        <span th:text="#{label.tr.menu.menuMessage}" />
+    </div>
+    <div>
         <ul>
-            <li><a href="tours" th:href="@{tours(initForm)}">ツアー検索する</a></li>
+            <li>
+                <a th:href="@{tours(initForm)}" th:text="#{label.tr.menu.searchBtnMessage}" />
+                <div th:utext="#{label.tr.menu.tourSearchMessage}" />
+            </li>
         </ul>
     </div>
     <div sec:authorize="!hasRole('ROLE_USER')">
         <ul>
-            <li><a href="login" th:href="@{login}">ログインする</a></li>
-            <li><a href="customers/create" th:href="@{customers/create(form)}">顧客登録する</a></li>
+            <li>
+                <a th:href="@{login}" th:text="#{label.tr.menu.loginBtnMessage}" />
+                <div th:utext="#{label.tr.menu.loginMessage}" />
+            </li>
+            <li>
+                <a th:href="@{customers/create(form)}" th:text="#{label.tr.menu.customerRegisterBtnMessage}" />
+                <div th:utext="#{label.tr.menu.customerRegisterMessage}" />
+            </li>
         </ul>
     </div>
     <div sec:authorize="hasRole('ROLE_USER')">
         <ul>
-            <li><a href="/reservations/me" th:href="@{/reservations/me}">予約を照会する</a></li>
+            <li>
+                <a th:href="@{/reservations/me}" th:text="#{label.tr.menu.referBtnMessage}" />
+                <div th:utext="#{label.tr.menu.referMessage}" />
+            </li>
         </ul>
     </div>
 </div>
