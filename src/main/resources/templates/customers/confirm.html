@@ -4,31 +4,57 @@
       layout:decorator="layout">
 <head>
     <meta charset="UTF-8"/>
-    <title>ツアー予約システム</title>
 </head>
 <body>
 <div layout:fragment="content">
+    <div class="panel panel-info">
+        <div th:utext="#{label.tr.managecustomer.createConfirmMessage}"/>
+    </div>
     <form th:action="@{/customers/create}" th:object="${customerForm}" method="post">
-        フリガナ
-        <span th:text="*{customerKana}" th:remove="tag" /><br/>
-        氏名
-        <span th:text="*{customerName}" th:remove="tag" /><br/>
-        誕生日
-        <span th:text="*{customerBirthYear}" th:remove="tag" />年
-        <span th:text="*{customerBirthMonth}" th:remove="tag" />月
-        <span th:text="*{customerBirthDay}" th:remove="tag" />日<br/>
-        職業
-        <span th:text="*{customerJob}" th:remove="tag" /><br/>
-        Eメール
-        <span th:text="*{customerMail}" th:remove="tag" /><br/>
-        電話番号
-        <span th:text="*{customerTel}" th:remove="tag" /><br/>
-        郵便番号
-        <span th:text="*{customerPost}" th:remove="tag" /><br/>
-        住所
-        <span th:text="*{customerAdd}" th:remove="tag" /><br/>
-        確認パスワード
-        ********<br/>
+        <table class="table table-striped">
+            <tbody>
+            <tr>
+                <td th:text="#{label.tr.common.kana}" />
+                <td th:text="*{customerKana}" />
+            </tr>
+            <tr>
+                <td th:text="#{label.tr.common.name}" />
+                <td th:text="*{customerName}" />
+            </tr>
+            <tr>
+                <td th:text="#{label.tr.common.birthday}" />
+                <td>
+                    <span th:text="*{customerBirthYear}" th:remove="tag" />年
+                    <span th:text="*{customerBirthMonth}" th:remove="tag" />月
+                    <span th:text="*{customerBirthDay}" th:remove="tag" />日
+                </td>
+            </tr>
+            <tr>
+                <td th:text="#{label.tr.common.job}" />
+                <td th:text="*{customerJob}" />
+            </tr>
+            <tr>
+                <td th:text="#{label.tr.common.email}" />
+                <td th:text="*{customerMail}" />
+            </tr>
+            <tr>
+                <td th:text="#{label.tr.common.tel}" />
+                <td th:text="*{customerTel}" />
+            </tr>
+            <tr>
+                <td th:text="#{label.tr.common.zip}" />
+                <td th:text="*{customerPost}" />
+            </tr>
+            <tr>
+                <td th:text="#{label.tr.common.address}" />
+                <td th:text="*{customerAdd}" />
+            </tr>
+            <tr>
+                <td th:text="#{label.tr.common.password}" />
+                <td>********</td>
+            </tr>
+            </tbody>
+        </table>
 
         <input type="hidden" name="customerKana" th:field="*{customerKana}" />
         <input type="hidden" name="customerName" th:field="*{customerName}" />
@@ -42,8 +68,9 @@
         <input type="hidden" name="customerAdd" th:field="*{customerAdd}" />
         <input type="hidden" name="customerPass" th:field="*{customerPass}" />
         <input type="hidden" name="customerPassConfirm" th:field="*{customerPassConfirm}" />
-        <button name="redo">戻る</button>
-        <button>登録</button>
+        
+        <button class="btn btn-default" name="redo" th:text="#{label.tr.common.goBackMessage}" />
+        <button class="btn btn-default" th:text="#{label.tr.common.register}" />
     </form>
 </div>
 </body>
