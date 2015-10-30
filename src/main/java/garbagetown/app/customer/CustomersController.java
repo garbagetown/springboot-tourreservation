@@ -58,7 +58,7 @@ public class CustomersController {
         return form;
     }
 
-    @RequestMapping(value = "create", method = RequestMethod.GET)
+    @RequestMapping(value = "create", method = RequestMethod.GET, params = "form")
     public String create() {
         return "customers/form";
     }

@@ -17,7 +17,7 @@
     <div sec:authorize="!hasRole('ROLE_USER')">
         <ul>
             <li><a href="login" th:href="@{login}">ログインする</a></li>
-            <li><a href="customers/create" th:href="@{customers/create}">顧客登録する</a></li>
+            <li><a href="customers/create" th:href="@{customers/create(form)}">顧客登録する</a></li>
         </ul>
     </div>
     <div sec:authorize="hasRole('ROLE_USER')">

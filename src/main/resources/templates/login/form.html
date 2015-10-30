@@ -8,13 +8,18 @@
 </head>
 <body>
 <div layout:fragment="content">
+    <div th:text="#{label.tr.login.loginFormMessage}" />
     <form th:action="@{/login/authenticate}" method="post">
-        会員ID
+        <span th:text="#{label.tr.common.userId}" />
         <input type="text" name="username" /><br/>
-        パスワード
+        <span th:text="#{label.tr.common.password}" />
         <input type="password" name="password" /><br/>
-        <button>ログイン</button>
-        <button type="reset">リセット</button>
+        <button th:text="#{label.tr.common.login}" />
+        <button type="reset" th:text="#{label.tr.common.reset}" />
+    </form>
+    <div th:text="#{label.tr.login.notCustmerMessage}" />
+    <form th:action="@{/customers/create}" method="get">
+        <button name="form" th:text="#{label.tr.menu.customerRegisterBtnMessage}" />
     </form>
 </div>
 </body>
