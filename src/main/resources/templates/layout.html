@@ -8,8 +8,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 </head>
 <body>
-    <h1><a href="/" th:href="@{/}">ツアー予約システム</a></h1>
+    <div th:replace="layout/header" />
     <div layout:fragment="content">
     </div>
+    <div th:replace="layout/footer" />
 </body>
 </html>
