@@ -12,7 +12,7 @@
              class="alert alert-info" role="alert" />
         <div sec:authorize="hasRole('ROLE_USER')">
             <form th:action="@{/logout}">
-                <button th:text="#{label.tr.common.logout}" />
+                <button class="btn btn-default" th:text="#{label.tr.common.logout}" />
             </form>
         </div>
     </div>

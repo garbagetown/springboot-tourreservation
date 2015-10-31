@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
       layout:decorator="layout">
 <head>
@@ -7,79 +8,90 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <table class="table table-striped">
+
+    <div layout:include="common/top" />
+    <h2 th:text="#{label.tr.searchtour.titleDetailScreenMessage}" />
+    <div class="panel panel-info">
+        <div th:utext="#{label.tr.searchtour.detailScreenFlowMessage}"/>
+    </div>
+
+    <div sec:authorize="!hasRole('ROLE_USER')" th:utext="#{label.tr.searchtour.loginToReserveMessage}" />
+    <div sec:authorize="hasRole('ROLE_USER')" th:utext="#{label.tr.searchtour.pressReserveBtnMessage}" />
+
+    <table class="table table-striped" th:object="${output.tourinfo}">
         <thead>
         <tr>
-            <td colspan="2">ツアー詳細情報</td>
+            <th colspan="2" th:text="#{label.tr.searchtour.tourDetailCaptionMessage}" />
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td>ツアー名</td>
-            <td th:text="${output.tourinfo.tourName}">ツアー名</td>
+            <td th:text="#{label.tr.searchtour.tourname}" />
+            <td th:text="*{tourName}" />
         </tr>
         <tr>
-            <td>出発日</td>
-            <td th:text="${output.tourinfo.depDay}">出発日</td>
+            <td th:text="#{label.tr.searchtour.depDay}" />
+            <td th:text="*{depDay}" />
         </tr>
         <tr>
-            <td>日数</td>
-            <td th:text="${output.tourinfo.tourDays}">日数</td>
+            <td th:text="#{label.tr.searchtour.tourDays}" />
+            <td th:text="*{tourDays}" />
         </tr>
         <tr>
-            <td>出発地</td>
-            <td th:text="${output.tourinfo.departure.depName}">出発地</td>
+            <td th:text="#{label.tr.searchtour.depName}" />
+            <td th:text="*{departure.depName}" />
         </tr>
         <tr>
-            <td>目的地</td>
-            <td th:text="${output.tourinfo.arrival.arrName}">目的地</td>
+            <td th:text="#{label.tr.searchtour.arrName}" />
+            <td th:text="*{arrival.arrName}" />
         </tr>
         <tr>
-            <td>添乗員</td>
-            <td th:text="${output.tourinfo.conductor}">添乗員</td>
+            <td th:text="#{label.tr.searchtour.conductor}" />
+            <td th:text="*{conductor}" />
         </tr>
         <tr>
-            <td>宿泊施設</td>
-            <td th:text="${output.tourinfo.accommodation.accomName}">宿泊施設</td>
+            <td th:text="#{label.tr.searchtour.accomName}" />
+            <td th:text="*{accommodation.accomName}" />
         </tr>
         <tr>
-            <td>連絡先</td>
-            <td th:text="${output.tourinfo.accommodation.accomTel}">連絡先</td>
+            <td th:text="#{label.tr.searchtour.accomTel}" />
+            <td th:text="*{accommodation.accomTel}" />
         </tr>
         <tr>
-            <td>概要</td>
-            <td th:text="${output.tourinfo.tourAbs}">概要</td>
+            <td th:text="#{label.tr.searchtour.tourAbs}" />
+            <td th:text="*{tourAbs}" />
         </tr>
         </tbody>
     </table>
-    <table class="table table-striped">
+
+    <table class="table table-striped" th:object="${output.priceCalculateOutput}">
         <thead>
         <tr>
-            <td colspan="4">料金明細</td>
+            <th colspan="4" th:text="#{label.tr.searchtour.statementOfCharges}" />
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td>年齢区分</td>
-            <td>単価</td>
-            <td>人数</td>
-            <td>料金</td>
+            <td th:text="#{label.tr.searchtour.classificationOnAge}" />
+            <td th:text="#{label.tr.searchtour.unitPrice}" />
+            <td th:text="#{label.tr.searchtour.noOfPeople}" />
+            <td th:text="#{label.tr.searchtour.charge}" />
         </tr>
         <tr>
-            <td>大人</td>
-            <td th:text="${#numbers.formatInteger(output.priceCalculateOutput.adultUnitPrice, 3, 'COMMA') + '円'}">単価</td>
-            <td th:text="${output.priceCalculateOutput.adultCount + '人'}">人数</td>
-            <td th:text="${#numbers.formatInteger(output.priceCalculateOutput.adultPrice, 3, 'COMMA') + '円'}">料金</td>
+            <td th:text="#{label.tr.searchtour.adult}" />
+            <td th:text="*{#numbers.formatInteger(adultUnitPrice, 3, 'COMMA') + '円'}" />
+            <td th:text="*{adultCount + '人'}" />
+            <td th:text="*{#numbers.formatInteger(adultPrice, 3, 'COMMA') + '円'}" />
         </tr>
         <tr>
-            <td>子ども</td>
-            <td th:text="${#numbers.formatInteger(output.priceCalculateOutput.childUnitPrice, 3, 'COMMA') + '円'}">単価</td>
-            <td th:text="${output.priceCalculateOutput.childCount + '人'}">人数</td>
-            <td th:text="${#numbers.formatInteger(output.priceCalculateOutput.childPrice, 3, 'COMMA') + '円'}">料金</td>
+            <td th:text="#{label.tr.searchtour.child}" />
+            <td th:text="*{#numbers.formatInteger(childUnitPrice, 3, 'COMMA') + '円'}" />
+            <td th:text="*{childCount + '人'}" />
+            <td th:text="*{#numbers.formatInteger(childPrice, 3, 'COMMA') + '円'}" />
         </tr>
         <tr>
-            <td colspan="3">合計料金</td>
-            <td th:text="${#numbers.formatInteger(output.priceCalculateOutput.sumPrice, 3, 'COMMA') + '円'}">合計料金</td>
+            <td colspan="3" th:text="#{label.tr.searchtour.sumPrice}" />
+            <td th:text="*{#numbers.formatInteger(sumPrice, 3, 'COMMA') + '円'}" />
         </tr>
         </tbody>
     </table>
