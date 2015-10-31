@@ -1,6 +1,8 @@
 package garbagetown.app.reservetour;
 
+import garbagetown.domain.service.userdetails.ReservationUserDetails;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,9 +23,10 @@ public class ReserveTourController {
     ReserveTourHelper reserveTourHelper;
 
     @RequestMapping(value = "{tourCode}", method = RequestMethod.GET, params = "form")
-    public String reserveForm(@PathVariable("tourCode") String tourCode, ReserveTourForm form, Model model) {
+    public String reserveForm(@AuthenticationPrincipal ReservationUserDetails userDetails,
+                              @PathVariable("tourCode") String tourCode, ReserveTourForm form, Model model) {
 
-        TourDetailOutput output = reserveTourHelper.findTourDetail(tourCode, form);
+        TourDetailOutput output = reserveTourHelper.findTourDetail(userDetails, tourCode, form);
 
         model.addAttribute("output", output);
 

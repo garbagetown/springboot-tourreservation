@@ -4,6 +4,7 @@ import garbagetown.domain.model.Tourinfo;
 import garbagetown.domain.service.tourinfo.PriceCalculateOutput;
 import garbagetown.domain.service.tourinfo.PriceCalculateSharedService;
 import garbagetown.domain.service.tourinfo.TourinfoSharedService;
+import garbagetown.domain.service.userdetails.ReservationUserDetails;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
@@ -20,7 +21,7 @@ public class ReserveTourHelper {
     @Inject
     PriceCalculateSharedService priceCalculateService;
 
-    public TourDetailOutput findTourDetail(String tourCode, ReserveTourForm form) {
+    public TourDetailOutput findTourDetail(ReservationUserDetails userDetails, String tourCode, ReserveTourForm form) {
 
         Tourinfo tourinfo = tourinfoSharedService.findOne(tourCode);
 
@@ -31,6 +32,9 @@ public class ReserveTourHelper {
         output.setTourinfo(tourinfo);
         output.setPriceCalculateOutput(priceCalculateOutput);
 
+        if (userDetails != null) {
+            output.setCustomer(userDetails.getCustomer());
+        }
         return output;
     }
 }
