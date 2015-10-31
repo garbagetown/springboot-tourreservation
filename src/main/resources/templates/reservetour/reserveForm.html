@@ -142,6 +142,37 @@
         </tr>
         </tbody>
     </table>
+
+    <div sec:authorize="hasRole('ROLE_USER')">
+        <form>
+            <table class="table table-striped" >
+                <thead>
+                <tr>
+                    <th colspan="2" th:text="#{label.tr.common.specialNotes}" />
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td th:text="#{label.tr.common.opinionSuggestion}" />
+                    <td>
+                        <textarea name="remarks" />
+                        <div th:text="#{label.tr.searchtour.lessThanEightyCharsMessage}" />
+                        <div th:text="#{label.tr.searchtour.opinionSuggestionMessage}" />
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <button class="btn btn-default" th:text="#{label.tr.common.confirm}" />
+        </form>
+    </div>
+    <div sec:authorize="!hasRole('ROLE_USER')">
+        <form th:action="@{/login}" method="get">
+            <button class="btn btn-default" th:text="#{label.tr.menu.loginBtnMessage}" />
+        </form>
+    </div>
+    <form method="get">
+        <button class="btn btn-default" th:text="#{label.tr.common.goBackMessage}" />
+    </form>
 </div>
 </body>
 </html>

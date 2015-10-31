@@ -35,3 +35,8 @@ body {
 .panel-info {
   padding: 15px;
 }
+
+textarea {
+  width: 80%;
+  height: 100px;
+}
