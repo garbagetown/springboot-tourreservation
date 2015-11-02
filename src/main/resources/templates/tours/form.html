@@ -196,7 +196,9 @@
                     <a href="tours" th:href="@{'/tours/' + ${tour.tourCode}(
                        form,
                        adultCount=${form.adultCount},
-                       childCount=${form.childCount}
+                       childCount=${form.childCount},
+                       page=${page.number},
+                       size=${page.size}
                     )}" th:text="${tour.tourName}" />
                 </td>
                 <td th:text="${#dates.format(tour.depDay, #messages.msg('label.tr.common.datePattern'))}" />

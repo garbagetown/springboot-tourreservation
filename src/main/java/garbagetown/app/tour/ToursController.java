@@ -16,6 +16,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.terasoluna.gfw.common.date.jodatime.JodaTimeDateFactory;
 
 import javax.inject.Inject;
@@ -26,6 +27,7 @@ import java.util.Date;
  */
 @Controller
 @RequestMapping(value = "tours")
+@SessionAttributes(types = TourForm.class)
 public class ToursController {
 
     @Inject
