@@ -101,6 +101,8 @@
     </form>
 
     <div th:if="${page}">
+        <hr/>
+        <div class="alert alert-warning" role="alert" th:text="#{label.tr.searchtour.resultCountMessage(${page.totalElements})}" />
         <nav>
         <ul class="pagination">
             <li>
