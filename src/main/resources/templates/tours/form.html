@@ -196,7 +196,7 @@
         </thead>
         <tbody>
             <tr th:each="tour,status : ${page.content}">
-                <td th:text="${status.count}" />
+                <td th:text="${page.size * page.number + status.count}" />
                 <td>
                     <a href="tours" th:href="@{'/tours/' + ${tour.tourCode}(
                        form,
