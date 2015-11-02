@@ -103,83 +103,11 @@
     </form>
 
 
-    <div th:if="${page}" th:with="current=${param.page}? ${param.page[0]} : '0'">
+    <div th:if="${page}">
         <hr/>
         <div class="alert alert-warning" role="alert" th:text="#{label.tr.searchtour.resultCountMessage(${page.totalElements})}" />
         <div class="text-center">
-        <ul class="pagination">
-            <li th:class="${page.number == 0}? 'disabled' : null">
-                <a href="tours" th:href="@{/tours/search(
-                   page='0', size=${page.size},
-                   adultCount=${form.adultCount},
-                   arrCode=${form.arrCode},
-                   basePrice=${form.basePrice},
-                   childCount=${form.childCount},
-                   depCode=${form.depCode},
-                   depDay=${form.depDay},
-                   depMonth=${form.depMonth},
-                   depYear=${form.depYear},
-                   tourDays=${form.tourDays}
-                )}">&lt;&lt;</a>
-            </li>
-            <li th:class="${page.number == 0}? 'disabled' : null">
-                <a href="tours" th:href="@{/tours/search(
-                   page=${page.number - 1}, size=${page.size},
-                   adultCount=${form.adultCount},
-                   arrCode=${form.arrCode},
-                   basePrice=${form.basePrice},
-                   childCount=${form.childCount},
-                   depCode=${form.depCode},
-                   depDay=${form.depDay},
-                   depMonth=${form.depMonth},
-                   depYear=${form.depYear},
-                   tourDays=${form.tourDays}
-                )}">&lt;</a>
-            </li>
-            <li th:each="i : ${#numbers.sequence(0, page.totalPages - 1)}"
-                    th:class="${#numbers.formatInteger(i, 0) == current}? 'active' : null">
-                <a href="tours" th:href="@{/tours/search(
-                   page=${i}, size=${page.size},
-                   adultCount=${form.adultCount},
-                   arrCode=${form.arrCode},
-                   basePrice=${form.basePrice},
-                   childCount=${form.childCount},
-                   depCode=${form.depCode},
-                   depDay=${form.depDay},
-                   depMonth=${form.depMonth},
-                   depYear=${form.depYear},
-                   tourDays=${form.tourDays}
-                )}" th:text="${i + 1}" />
-            </li>
-            <li th:class="${page.number == page.totalPages - 1}? 'disabled' : null">
-                <a href="tours" th:href="@{/tours/search(
-                   page=${page.number + 1}, size=${page.size},
-                   adultCount=${form.adultCount},
-                   arrCode=${form.arrCode},
-                   basePrice=${form.basePrice},
-                   childCount=${form.childCount},
-                   depCode=${form.depCode},
-                   depDay=${form.depDay},
-                   depMonth=${form.depMonth},
-                   depYear=${form.depYear},
-                   tourDays=${form.tourDays}
-                )}">&gt;</a>
-            </li>
-            <li th:class="${page.number == page.totalPages - 1}? 'disabled' : null">
-                <a href="tours" th:href="@{/tours/search(
-                   page=${page.totalPages - 1}, size=${page.size},
-                   adultCount=${form.adultCount},
-                   arrCode=${form.arrCode},
-                   basePrice=${form.basePrice},
-                   childCount=${form.childCount},
-                   depCode=${form.depCode},
-                   depDay=${form.depDay},
-                   depMonth=${form.depMonth},
-                   depYear=${form.depYear},
-                   tourDays=${form.tourDays}
-                )}">&gt;&gt;</a>
-            </li>
-        </ul>
+            <div th:replace="tours/pagination" />
         </div>
     </div>
 
@@ -217,6 +145,11 @@
         </tbody>
     </table>
 
+    <div th:if="${page}">
+        <div class="text-center">
+            <div th:replace="tours/pagination" />
+        </div>
+    </div>
 </div>
 </body>
 </html>
