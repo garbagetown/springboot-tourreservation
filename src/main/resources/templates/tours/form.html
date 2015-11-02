@@ -43,7 +43,7 @@
             <label for="tourDays" class="col-sm-2 control-label" th:text="#{label.tr.common.tourDays}" />
             <div class="col-sm-10">
                 <select id="tourDays" name="tourDays" th:field="*{tourDays}" th:errorclass="fieldError">
-                    <option th:each="m : ${CL_TOUR_DAYS}" th:value="${m.key}" th:text="${m.value}"></option>
+                    <option th:each="m : ${CL_TOUR_DAYS}" th:value="${m.key}" th:text="${m.value}" />
                 </select>
             </div>
         </div>
@@ -51,15 +51,17 @@
             <label for="depPlace" class="col-sm-2 control-label" th:text="#{label.tr.common.depPlace}" />
             <div class="col-sm-10">
                 <select id="depPlace" name="depCode" th:field="*{depCode}" th:errorclass="fieldError">
-                    <option th:each="m : ${CL_PREF}" th:value="${m.key}" th:text="${m.value}"></option>
+                    <option value="" th:text="#{label.tr.searchtour.placeMessage}" />
+                    <option th:each="m : ${CL_PREF}" th:value="${m.key}" th:text="${m.value}" />
                 </select>
             </div>
         </div>
         <div class="form-group">
             <label for="arrPlace" class="col-sm-2 control-label" th:text="#{label.tr.common.arrPlace}" />
             <div class="col-sm-10">
-                <select id="arrPlace" name="arrCode" th:field="*{arrCode}" th:errorclass="fieldError">>
-                    <option th:each="m : ${CL_PREF}" th:value="${m.key}" th:text="${m.value}"></option>
+                <select id="arrPlace" name="arrCode" th:field="*{arrCode}" th:errorclass="fieldError">
+                    <option value="" th:text="#{label.tr.searchtour.placeMessage}" />
+                    <option th:each="m : ${CL_PREF}" th:value="${m.key}" th:text="${m.value}" />
                 </select>
             </div>
         </div>
@@ -69,14 +71,14 @@
                 <p>
                     <span th:text="#{label.tr.common.adult}" />
                     <select name="adultCount" th:field="*{adultCount}" th:errorclass="fieldError">
-                        <option th:each="m : ${CL_ADULT_COUNT}" th:value="${m.key}" th:text="${m.value}"></option>
+                        <option th:each="m : ${CL_ADULT_COUNT}" th:value="${m.key}" th:text="${m.value}" />
                     </select>
                     <span th:text="#{label.tr.common.person}" />
                 </p>
                 <p>
                     <span th:text="#{label.tr.common.child}" />
                     <select name="childCount" th:field="*{childCount}" th:errorclass="fieldError">
-                        <option th:each="m : ${CL_CHILD_COUNT}" th:value="${m.key}" th:text="${m.value}"></option>
+                        <option th:each="m : ${CL_CHILD_COUNT}" th:value="${m.key}" th:text="${m.value}" />
                     </select>
                     <span th:text="#{label.tr.common.person}" />
                 </p>
@@ -89,7 +91,7 @@
             <label for="basePrice" class="col-sm-2 control-label" th:text="#{label.tr.common.basePrice}" />
             <div class="col-sm-10">
                 <select id="basePrice" name="basePrice" th:field="*{basePrice}" th:errorclass="fieldError">>
-                    <option th:each="m : ${CL_BASE_PRICE}" th:value="${m.key}" th:text="${m.value}"></option>
+                    <option th:each="m : ${CL_BASE_PRICE}" th:value="${m.key}" th:text="${m.value}" />
                 </select>
             </div>
         </div>
