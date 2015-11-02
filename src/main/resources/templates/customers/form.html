@@ -14,7 +14,7 @@
     </div>
     <form class="form-horizontal" th:action="@{/customers/create}" th:object="${customerForm}" method="post">
         <ul th:if="${#fields.hasAnyErrors()}">
-            <li th:each="e:${#fields.detailedErrors()}" th:text="${e}"></li>
+            <li th:each="e : ${#fields.detailedErrors()}" th:text="${e}" />
         </ul>
         <div class="form-group">
             <label for="customerKana" class="col-sm-2 control-label"

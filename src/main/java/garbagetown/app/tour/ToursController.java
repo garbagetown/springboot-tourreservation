@@ -13,10 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 import org.terasoluna.gfw.common.date.jodatime.JodaTimeDateFactory;
 
 import javax.inject.Inject;
@@ -37,7 +36,15 @@ public class ToursController {
     JodaTimeDateFactory dateFactory;
 
     @Inject
+    TourFormValidator validator;
+
+    @Inject
     Mapper beanMapper;
+
+    @InitBinder("tourForm")
+    public void initBinder(WebDataBinder binder) {
+        binder.addValidators(validator);
+    }
 
     @ModelAttribute
     TourForm setUpForm() {
@@ -51,7 +58,8 @@ public class ToursController {
     }
 
     @RequestMapping(method = RequestMethod.GET, params = "initForm")
-    public String index() {
+    public String index(SessionStatus status) {
+        status.setComplete();
         return "redirect:/tours?form";
     }
 
@@ -61,7 +69,12 @@ public class ToursController {
     }
 
     @RequestMapping(value = "search", method = RequestMethod.GET)
-    public String search(@Validated TourForm form, BindingResult result, Model model, @PageableDefault Pageable pageable) {
+    public String search(@Validated TourForm form, BindingResult result, Model model,
+                         @PageableDefault Pageable pageable) {
+
+        if (result.hasErrors()) {
+            return "tours/form";
+        }
 
         TourinfoCriteria criteria = beanMapper.map(form, TourinfoCriteria.class);
 
