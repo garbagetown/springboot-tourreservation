@@ -100,12 +100,13 @@
         </div>
     </form>
 
-    <div th:if="${page}">
+
+    <div th:if="${page}" th:with="current=${param.page}? ${param.page[0]} : '0'">
         <hr/>
         <div class="alert alert-warning" role="alert" th:text="#{label.tr.searchtour.resultCountMessage(${page.totalElements})}" />
-        <nav>
+        <div class="text-center">
         <ul class="pagination">
-            <li>
+            <li th:class="${page.number == 0}? 'disabled' : null">
                 <a href="tours" th:href="@{/tours/search(
                    page='0', size=${page.size},
                    adultCount=${form.adultCount},
@@ -119,7 +120,7 @@
                    tourDays=${form.tourDays}
                 )}">&lt;&lt;</a>
             </li>
-            <li>
+            <li th:class="${page.number == 0}? 'disabled' : null">
                 <a href="tours" th:href="@{/tours/search(
                    page=${page.number - 1}, size=${page.size},
                    adultCount=${form.adultCount},
@@ -133,7 +134,8 @@
                    tourDays=${form.tourDays}
                 )}">&lt;</a>
             </li>
-            <li th:each="i : ${#numbers.sequence(0, page.totalPages - 1)}">
+            <li th:each="i : ${#numbers.sequence(0, page.totalPages - 1)}"
+                    th:class="${#numbers.formatInteger(i, 0) == current}? 'active' : null">
                 <a href="tours" th:href="@{/tours/search(
                    page=${i}, size=${page.size},
                    adultCount=${form.adultCount},
@@ -145,9 +147,9 @@
                    depMonth=${form.depMonth},
                    depYear=${form.depYear},
                    tourDays=${form.tourDays}
-                )}" th:text="${i + 1}">0</a>
+                )}" th:text="${i + 1}" />
             </li>
-            <li>
+            <li th:class="${page.number == page.totalPages - 1}? 'disabled' : null">
                 <a href="tours" th:href="@{/tours/search(
                    page=${page.number + 1}, size=${page.size},
                    adultCount=${form.adultCount},
@@ -161,7 +163,7 @@
                    tourDays=${form.tourDays}
                 )}">&gt;</a>
             </li>
-            <li>
+            <li th:class="${page.number == page.totalPages - 1}? 'disabled' : null">
                 <a href="tours" th:href="@{/tours/search(
                    page=${page.totalPages - 1}, size=${page.size},
                    adultCount=${form.adultCount},
@@ -176,7 +178,7 @@
                 )}">&gt;&gt;</a>
             </li>
         </ul>
-        </nav>
+        </div>
     </div>
 
     <table th:if="${page}" class="table table-striped">

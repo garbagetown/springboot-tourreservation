@@ -40,3 +40,8 @@ textarea {
   width: 80%;
   height: 100px;
 }
+
+.disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
