@@ -2,6 +2,8 @@ package garbagetown.domain.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.joda.time.DateTime;
+import sun.security.krb5.internal.KerberosTime;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -18,6 +20,8 @@ import java.util.List;
 @Entity
 @Table(name = "tourinfo")
 public class Tourinfo implements Serializable {
+
+    private static final int PAYMENT_LIMIT_DAYS = 7;
 
     @Id
     @NotNull
@@ -79,4 +83,9 @@ public class Tourinfo implements Serializable {
     @JoinColumn(name = "dep_code", referencedColumnName = "dep_code")
     @ManyToOne(fetch = FetchType.LAZY)
     private Depature departure;
+
+    @Transient
+    public DateTime getPaymentLimit() {
+        return new DateTime(depDay).minusDays(PAYMENT_LIMIT_DAYS);
+    }
 }

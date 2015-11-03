@@ -3,6 +3,8 @@ package garbagetown.app.managereservation;
 import garbagetown.domain.model.Reserve;
 import garbagetown.domain.model.Tourinfo;
 import garbagetown.domain.service.reserve.ReserveService;
+import garbagetown.domain.service.tourinfo.PriceCalculateOutput;
+import garbagetown.domain.service.tourinfo.PriceCalculateSharedService;
 import garbagetown.domain.service.tourinfo.TourinfoSharedService;
 import garbagetown.domain.service.userdetails.ReservationUserDetails;
 import org.springframework.stereotype.Component;
@@ -19,6 +21,9 @@ public class ManageReservationHelper {
 
     @Inject
     ReserveService reserveService;
+
+    @Inject
+    PriceCalculateSharedService priceCalculateService;
 
     @Inject
     TourinfoSharedService tourInfoSharedService;
@@ -40,5 +45,26 @@ public class ManageReservationHelper {
             rows.add(output);
         }
         return rows;
+    }
+
+    public ReservationDetailOutput findDetail(String reserveNo) {
+
+        Reserve reserve = reserveService.findOne(reserveNo);
+        Tourinfo tourinfo = reserve.getTourinfo();
+        int adultCount = reserve.getAdultCount();
+        int childCount = reserve.getChildCount();
+
+        ReservationDetailOutput output = new ReservationDetailOutput();
+        output.setReserve(reserve);
+        output.setCustomer(reserve.getCustomer());
+
+        PriceCalculateOutput price = priceCalculateService.calculatePrice(tourinfo.getBasePrice(),
+                adultCount, childCount);
+        output.setPriceCalculateOutput(price);
+
+        output.setPaymentTimeLimit(tourinfo.getPaymentLimit().toDate());
+        output.setLimitExceeding(tourInfoSharedService.isOverPaymentLimit(tourinfo));
+
+        return output;
     }
 }

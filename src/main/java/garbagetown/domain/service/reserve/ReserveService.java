@@ -10,4 +10,6 @@ import java.util.List;
 public interface ReserveService {
 
     List<Reserve> findAllByCustomerCode(String customerCode);
+
+    Reserve findOne(String reserveNo);
 }

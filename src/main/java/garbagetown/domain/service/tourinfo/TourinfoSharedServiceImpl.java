@@ -33,7 +33,7 @@ public class TourinfoSharedServiceImpl implements TourinfoSharedService {
         Assert.notNull(tourinfo, "tour must not be null");
 
         DateTime today = dateFactory.newDateTime().withTime(0, 0, 0, 0);
-        DateTime paymentLimit = new DateTime(tourinfo.getDepDay()).minusDays(7);
+        DateTime paymentLimit = tourinfo.getPaymentLimit();
 
         return today.isAfter(paymentLimit);
     }

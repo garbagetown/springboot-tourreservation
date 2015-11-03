@@ -27,4 +27,9 @@ public class ReserveServiceImpl implements ReserveService {
         List<Reserve> reserves = reserveRepository.findAllByCustomer(customer);
         return reserves;
     }
+
+    @Override
+    public Reserve findOne(String reserveNo) {
+        return reserveRepository.findOne(reserveNo);
+    }
 }
