@@ -54,7 +54,7 @@
             </td>
             <td th:text="${#numbers.formatInteger(row.reserve.sumPrice, 3, 'COMMA') + '円'}"></td>
             <td>
-                <form th:action="@{'/reservations/' + *{reserveNo}}">
+                <form th:action="@{'/reservations/' + *{reserveNo}}" method="get">
                     <button class="btn btn-default" th:text="#{label.tr.managereservation.showDetailsBtnMessage}" />
                 </form>
                 <div th:if="!${row.limitExceeding} and *{transfer} == '0'">
