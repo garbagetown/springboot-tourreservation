@@ -4,58 +4,60 @@
       layout:decorator="layout">
 <head>
     <meta charset="UTF-8"/>
-    <title>ツアー予約システム</title>
 </head>
 <body>
 <div layout:fragment="content">
-    <h1 th:utext="#{label.tr.managereservation.manageReservationMessage}"></h1>
-    <div class="info">
+
+    <div layout:include="common/top" />
+
+    <h1 th:text="#{label.tr.managereservation.manageReservationMessage}" />
+    <div class="panel panel-info">
         <span th:utext="#{label.tr.managereservation.manageReservationFlowMessage}" />
     </div>
-    <table>
+    <table class="table table-striped">
         <caption>
             <span th:utext="#{label.tr.managereservation.ReserveListMessage}"/>
         </caption>
         <tr>
-            <th><span th:utext="#{label.tr.managereservation.reserveNo}" /></th>
-            <th><span th:utext="#{label.tr.managereservation.tourName}" /></th>
-            <th><span th:utext="#{label.tr.managereservation.depDay}" /></th>
-            <th><span th:utext="#{label.tr.managereservation.days}" /></th>
-            <th><span th:utext="#{label.tr.managereservation.origin}" /></th>
-            <th><span th:utext="#{label.tr.managereservation.destination}" /></th>
-            <th><span th:utext="#{label.tr.managereservation.noOfPerson}" /></th>
-            <th><span th:utext="#{label.tr.managereservation.paymentStatus}" /></th>
-            <th><span th:utext="#{label.tr.managereservation.totalCost}" /></th>
+            <th th:text="#{label.tr.managereservation.reserveNo}" />
+            <th th:text="#{label.tr.managereservation.tourName}" />
+            <th th:text="#{label.tr.managereservation.depDay}" />
+            <th th:text="#{label.tr.managereservation.days}" />
+            <th th:text="#{label.tr.managereservation.origin}" />
+            <th th:text="#{label.tr.managereservation.destination}" />
+            <th th:text="#{label.tr.managereservation.noOfPerson}" />
+            <th th:text="#{label.tr.managereservation.paymentStatus}" />
+            <th th:text="#{label.tr.managereservation.totalCost}" />
             <th></th>
         </tr>
-        <tr th:each="row : ${rows}">
-            <td th:text="${row.reserve.reserveNo}"></td>
-            <td th:text="${row.reserve.tourinfo.tourName}"></td>
-            <td th:text="${row.reserve.tourinfo.depDay}"></td>
-            <td th:text="${row.reserve.tourinfo.tourDays}"></td>
-            <td th:text="${row.reserve.tourinfo.departure.depName}"></td>
-            <td th:text="${row.reserve.tourinfo.arrival.arrName}"></td>
+        <tr th:each="row : ${rows}" th:object="${row.reserve}">
+            <td th:text="*{reserveNo}"/>
+            <td th:text="*{tourinfo.tourName}"/>
+            <td th:text="*{#dates.format(tourinfo.depDay, #messages.msg('label.tr.common.datePattern'))}" />
+            <td th:text="*{tourinfo.tourDays}"/>
+            <td th:text="*{tourinfo.departure.depName}"/>
+            <td th:text="*{tourinfo.arrival.arrName}"/>
             <td>
                 <div>
                     <span th:text="#{label.tr.common.adult}" />
-                    <span th:text="${row.reserve.adultCount + '人'}"/>
+                    <span th:text="*{adultCount + '人'}"/>
                 </div>
                 <div>
                     <span th:text="#{label.tr.common.child}" />
-                    <span th:text="${row.reserve.childCount + '人'}" />
+                    <span th:text="*{childCount + '人'}" />
                 </div>
             </td>
             <td>
-                <span th:text="${row.reserve.transfer} == '0' ?
+                <span th:text="*{transfer} == '0' ?
                   #{label.tr.managereservation.paymentNotDone} :
                   #{label.tr.managereservation.done}" />
             </td>
             <td th:text="${#numbers.formatInteger(row.reserve.sumPrice, 3, 'COMMA') + '円'}"></td>
             <td>
-                <button th:text="#{label.tr.managereservation.showDetailsBtnMessage}" />
-                <div th:if="${row.reserve.transfer} == '0'">
-                    <button th:text="#{label.tr.managereservation.changeReservationBtnMessage}" />
-                    <button th:text="#{label.tr.managereservation.cancelReservationBtnMessage}" />
+                <button class="btn btn-default" th:text="#{label.tr.managereservation.showDetailsBtnMessage}" />
+                <div th:if="!${row.limitExceeding} and *{transfer} == '0'">
+                    <button class="btn btn-default" th:text="#{label.tr.managereservation.changeReservationBtnMessage}" />
+                    <button class="btn btn-default" th:text="#{label.tr.managereservation.cancelReservationBtnMessage}" />
                 </div>
             </td>
         </tr>
