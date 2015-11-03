@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<div layout:fragment="reservation">
+    <table class="table table-striped" sec:authorize="hasRole('ROLE_USER')" th:object="${output.customer}">
+        <caption th:text="#{label.tr.searchtour.representative}" />
+        <tr>
+            <td colspan="2" th:text="#{label.tr.searchtour.customerCode}" />
+            <td th:text="*{customerCode}" />
+        </tr>
+        <tr>
+            <td colspan="2" th:text="#{label.tr.searchtour.customerKana}" />
+            <td th:text="*{customerKana}" />
+        </tr>
+        <tr>
+            <td colspan="2" th:text="#{label.tr.searchtour.customerName}" />
+            <td th:text="*{customerName}" />
+        </tr>
+        <tr>
+            <td colspan="2" th:text="#{label.tr.searchtour.customerBirth}" />
+            <td th:text="*{customerBirth}" />
+        </tr>
+        <tr>
+            <td colspan="2" th:text="#{label.tr.searchtour.customerJob}" />
+            <td th:text="*{customerJob}" />
+        </tr>
+        <tr>
+            <td colspan="2" th:text="#{label.tr.searchtour.customerMail}" />
+            <td th:text="*{customerMail}" />
+        </tr>
+        <tr>
+            <td rowspan="3" th:text="#{label.tr.searchtour.customerContactInfo}" />
+            <td th:text="#{label.tr.searchtour.customerTell}" />
+            <td th:text="*{customerTel}" />
+        </tr>
+        <tr>
+            <td th:text="#{label.tr.searchtour.customerPost}" />
+            <td th:text="*{customerPost}" />
+        </tr>
+        <tr>
+            <td th:text="#{label.tr.searchtour.customerAdd}" />
+            <td th:text="*{customerAdd}" />
+        </tr>
+    </table>
+</div>
+</body>
+</html>

@@ -9,7 +9,35 @@
 <div layout:fragment="content">
 
     <div layout:include="common/top" />
-managereservation/detailForm.html
+
+    <h1 th:text="#{label.tr.managereservation.manageReservationShowScreenTitleMessage}" />
+    <div class="panel panel-info">
+        <span th:utext="#{label.tr.managereservation.manageReservationShowScreenFlowMessage}" />
+    </div>
+    <p th:utext="#{label.tr.managereservation.manageReservationShowMessage}" />
+
+    <p th:if="${output.reserve.transfer == '0'}" th:utext="#{label.tr.managereservation.paymentReminderMessage}" />
+    <p th:if="${output.reserve.transfer == '1'}" th:utext="#{label.tr.managereservation.paymentNoCancelMessage}" />
+
+    <div th:if="${output.reserve.transfer == '0'}" layout:include="common/fragment/payment" />
+
+    <div layout:include="common/fragment/reservation" />
+
+    <div layout:include="common/fragment/customer" />
+
+    <div layout:include="common/fragment/price" />
+
+    <table>
+        <caption th:text="#{label.tr.common.specialNotes}" />
+        <tr>
+            <td th:text="#{label.tr.common.opinionSuggestion}" />
+            <td th:text="${output.reserve.remarks}" />
+        </tr>
+    </table>
+
+    <form th:action="@{/reservations/me}" method="get">
+        <button class="btn btn-default" th:text="#{label.tr.managereservation.returnToListScreenBtnMessage}" />
+    </form>
 </div>
 </body>
 </html>

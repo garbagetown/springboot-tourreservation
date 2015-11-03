@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<div layout:fragment="price">
+    <table class="table table-striped" th:object="${output.priceCalculateOutput}">
+        <caption th:text="#{label.tr.searchtour.statementOfCharges}" />
+        <tr>
+            <td th:text="#{label.tr.searchtour.classificationOnAge}" />
+            <td th:text="#{label.tr.searchtour.unitPrice}" />
+            <td th:text="#{label.tr.searchtour.noOfPeople}" />
+            <td th:text="#{label.tr.searchtour.charge}" />
+        </tr>
+        <tr>
+            <td th:text="#{label.tr.searchtour.adult}" />
+            <td th:text="*{#numbers.formatInteger(adultUnitPrice, 3, 'COMMA') + '円'}" />
+            <td th:text="*{adultCount + '人'}" />
+            <td th:text="*{#numbers.formatInteger(adultPrice, 3, 'COMMA') + '円'}" />
+        </tr>
+        <tr>
+            <td th:text="#{label.tr.searchtour.child}" />
+            <td th:text="*{#numbers.formatInteger(childUnitPrice, 3, 'COMMA') + '円'}" />
+            <td th:text="*{childCount + '人'}" />
+            <td th:text="*{#numbers.formatInteger(childPrice, 3, 'COMMA') + '円'}" />
+        </tr>
+        <tr>
+            <td colspan="3" th:text="#{label.tr.searchtour.sumPrice}" />
+            <td th:text="*{#numbers.formatInteger(sumPrice, 3, 'COMMA') + '円'}" />
+        </tr>
+    </table>
+</div>
+</body>
+</html>

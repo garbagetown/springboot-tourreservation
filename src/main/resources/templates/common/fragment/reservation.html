@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<div layout:fragment="reservation">
+    <table class="table table-striped" th:object="${output.reserve}">
+        <caption th:text="#{label.tr.searchtour.tourDetailCaptionMessage}" />
+        <tr>
+            <td th:text="#{label.tr.searchtour.reserveNo}" />
+            <td th:text="*{reserveNo}" />
+        </tr>
+        <tr>
+            <td th:text="#{label.tr.searchtour.reserveDate}" />
+            <td th:text="*{#dates.format(reservedDay, #messages.msg('label.tr.common.datePattern'))}" />
+        </tr>
+        <tr>
+            <td th:text="#{label.tr.searchtour.tourname}" />
+            <td th:text="*{tourinfo.tourName}" />
+        </tr>
+        <tr>
+            <td th:text="#{label.tr.searchtour.depDay}" />
+            <td th:text="*{tourinfo.depDay}" />
+        </tr>
+        <tr>
+            <td th:text="#{label.tr.searchtour.tourDays}" />
+            <td th:text="*{tourinfo.tourDays}" />
+        </tr>
+        <tr>
+            <td th:text="#{label.tr.searchtour.depName}" />
+            <td th:text="*{tourinfo.departure.depName}" />
+        </tr>
+        <tr>
+            <td th:text="#{label.tr.searchtour.arrName}" />
+            <td th:text="*{tourinfo.arrival.arrName}" />
+        </tr>
+        <tr>
+            <td th:text="#{label.tr.searchtour.conductor}" />
+            <td th:text="*{tourinfo.conductor}" />
+        </tr>
+        <tr>
+            <td th:text="#{label.tr.searchtour.accomName}" />
+            <td th:text="*{tourinfo.accommodation.accomName}" />
+        </tr>
+        <tr>
+            <td th:text="#{label.tr.searchtour.accomTel}" />
+            <td th:text="*{tourinfo.accommodation.accomTel}" />
+        </tr>
+        <tr>
+            <td th:text="#{label.tr.searchtour.tourAbs}" />
+            <td th:text="*{tourinfo.tourAbs}" />
+        </tr>
+    </table>
+</div>
+</body>
+</html>

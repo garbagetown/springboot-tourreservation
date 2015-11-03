@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<div layout:fragment="tourinfo">
+    <table class="table table-striped" th:object="${output.tourinfo}">
+        <caption th:text="#{label.tr.searchtour.tourDetailCaptionMessage}" />
+        <tr>
+            <td th:text="#{label.tr.searchtour.tourname}" />
+            <td th:text="*{tourName}" />
+        </tr>
+        <tr>
+            <td th:text="#{label.tr.searchtour.depDay}" />
+            <td th:text="*{#dates.format(depDay, #messages.msg('label.tr.common.datePattern'))}" />
+        </tr>
+        <tr>
+            <td th:text="#{label.tr.searchtour.tourDays}" />
+            <td th:text="*{tourDays}" />
+        </tr>
+        <tr>
+            <td th:text="#{label.tr.searchtour.depName}" />
+            <td th:text="*{departure.depName}" />
+        </tr>
+        <tr>
+            <td th:text="#{label.tr.searchtour.arrName}" />
+            <td th:text="*{arrival.arrName}" />
+        </tr>
+        <tr>
+            <td th:text="#{label.tr.searchtour.conductor}" />
+            <td th:text="*{conductor}" />
+        </tr>
+        <tr>
+            <td th:text="#{label.tr.searchtour.accomName}" />
+            <td th:text="*{accommodation.accomName}" />
+        </tr>
+        <tr>
+            <td th:text="#{label.tr.searchtour.accomTel}" />
+            <td th:text="*{accommodation.accomTel}" />
+        </tr>
+        <tr>
+            <td th:text="#{label.tr.searchtour.tourAbs}" />
+            <td th:text="*{tourAbs}" />
+        </tr>
+    </table>
+</div>
+</body>
+</html>

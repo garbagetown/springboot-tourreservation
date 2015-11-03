@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<div layout:fragment="payment">
+    <table class="table table-striped" th:object="${output.priceCalculateOutput}">
+        <caption th:text="#{label.tr.common.paymentInfo}" />
+        <tr>
+            <td th:text="#{label.tr.common.paymentMethod}" />
+            <td th:text="#{label.tr.common.bankTransfer}" />
+        </tr>
+        <tr>
+            <td th:text="#{label.tr.common.paymentAccount}" />
+            <td>
+                <span th:text="#{label.tr.common.paymentCompanyname}" /><br/>
+                <span th:text="#{label.tr.common.savingsAccount}" />
+            </td>
+        </tr>
+        <tr>
+            <td th:text="#{label.tr.common.paymentTimeLimit}" />
+            <td th:text="${#dates.format(output.paymentTimeLimit, #messages.msg('label.tr.common.datePattern'))}" />
+        </tr>
+        <tr>
+            <td th:text="#{label.tr.common.paymentInquiry}" />
+            <td>
+                <span th:text="#{label.tr.common.companyName}" />
+                <span th:text="#{label.tr.common.companyTel}" />
+                <span th:text="#{label.tr.common.companyEmail}" />
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
