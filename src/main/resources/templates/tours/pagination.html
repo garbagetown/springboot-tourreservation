@@ -1,84 +1,81 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
 </head>
 <body>
-    <div layout:fragment="pagination">
-        <ul class="pagination" th:with="current=${param.page}? ${param.page[0]} : '0'">
-            <li th:class="${page.number == 0}? 'disabled' : null">
-                <a href="tours" th:href="@{/tours/search(
-                           page='0', size=${page.size},
-                           adultCount=${form.adultCount},
-                           arrCode=${form.arrCode},
-                           basePrice=${form.basePrice},
-                           childCount=${form.childCount},
-                           depCode=${form.depCode},
-                           depDay=${form.depDay},
-                           depMonth=${form.depMonth},
-                           depYear=${form.depYear},
-                           tourDays=${form.tourDays}
-                        )}">&lt;&lt;</a>
-            </li>
-            <li th:class="${page.number == 0}? 'disabled' : null">
-                <a href="tours" th:href="@{/tours/search(
-                           page=${page.number - 1}, size=${page.size},
-                           adultCount=${form.adultCount},
-                           arrCode=${form.arrCode},
-                           basePrice=${form.basePrice},
-                           childCount=${form.childCount},
-                           depCode=${form.depCode},
-                           depDay=${form.depDay},
-                           depMonth=${form.depMonth},
-                           depYear=${form.depYear},
-                           tourDays=${form.tourDays}
-                        )}">&lt;</a>
-            </li>
-            <li th:each="i : ${#numbers.sequence(0, page.totalPages - 1)}"
-                th:class="${#numbers.formatInteger(i, 0) == current}? 'active' : null">
-                <a href="tours" th:href="@{/tours/search(
-                           page=${i}, size=${page.size},
-                           adultCount=${form.adultCount},
-                           arrCode=${form.arrCode},
-                           basePrice=${form.basePrice},
-                           childCount=${form.childCount},
-                           depCode=${form.depCode},
-                           depDay=${form.depDay},
-                           depMonth=${form.depMonth},
-                           depYear=${form.depYear},
-                           tourDays=${form.tourDays}
-                        )}" th:text="${i + 1}" />
-            </li>
-            <li th:class="${page.number == page.totalPages - 1}? 'disabled' : null">
-                <a href="tours" th:href="@{/tours/search(
-                           page=${page.number + 1}, size=${page.size},
-                           adultCount=${form.adultCount},
-                           arrCode=${form.arrCode},
-                           basePrice=${form.basePrice},
-                           childCount=${form.childCount},
-                           depCode=${form.depCode},
-                           depDay=${form.depDay},
-                           depMonth=${form.depMonth},
-                           depYear=${form.depYear},
-                           tourDays=${form.tourDays}
-                        )}">&gt;</a>
-            </li>
-            <li th:class="${page.number == page.totalPages - 1}? 'disabled' : null">
-                <a href="tours" th:href="@{/tours/search(
-                           page=${page.totalPages - 1}, size=${page.size},
-                           adultCount=${form.adultCount},
-                           arrCode=${form.arrCode},
-                           basePrice=${form.basePrice},
-                           childCount=${form.childCount},
-                           depCode=${form.depCode},
-                           depDay=${form.depDay},
-                           depMonth=${form.depMonth},
-                           depYear=${form.depYear},
-                           tourDays=${form.tourDays}
-                        )}">&gt;&gt;</a>
-            </li>
-        </ul>
-    </div>
+    <ul th:fragment="pagination" class="pagination" th:with="current=${param.page}? ${param.page[0]} : '0'">
+        <li th:class="${page.number == 0}? 'disabled' : null">
+            <a href="tours" th:href="@{/tours/search(
+                       page='0', size=${page.size},
+                       adultCount=${form.adultCount},
+                       arrCode=${form.arrCode},
+                       basePrice=${form.basePrice},
+                       childCount=${form.childCount},
+                       depCode=${form.depCode},
+                       depDay=${form.depDay},
+                       depMonth=${form.depMonth},
+                       depYear=${form.depYear},
+                       tourDays=${form.tourDays}
+                    )}">&lt;&lt;</a>
+        </li>
+        <li th:class="${page.number == 0}? 'disabled' : null">
+            <a href="tours" th:href="@{/tours/search(
+                       page=${page.number - 1}, size=${page.size},
+                       adultCount=${form.adultCount},
+                       arrCode=${form.arrCode},
+                       basePrice=${form.basePrice},
+                       childCount=${form.childCount},
+                       depCode=${form.depCode},
+                       depDay=${form.depDay},
+                       depMonth=${form.depMonth},
+                       depYear=${form.depYear},
+                       tourDays=${form.tourDays}
+                    )}">&lt;</a>
+        </li>
+        <li th:each="i : ${#numbers.sequence(0, page.totalPages - 1)}"
+            th:class="${#numbers.formatInteger(i, 0) == current}? 'active' : null">
+            <a href="tours" th:href="@{/tours/search(
+                       page=${i}, size=${page.size},
+                       adultCount=${form.adultCount},
+                       arrCode=${form.arrCode},
+                       basePrice=${form.basePrice},
+                       childCount=${form.childCount},
+                       depCode=${form.depCode},
+                       depDay=${form.depDay},
+                       depMonth=${form.depMonth},
+                       depYear=${form.depYear},
+                       tourDays=${form.tourDays}
+                    )}" th:text="${i + 1}" />
+        </li>
+        <li th:class="${page.number == page.totalPages - 1}? 'disabled' : null">
+            <a href="tours" th:href="@{/tours/search(
+                       page=${page.number + 1}, size=${page.size},
+                       adultCount=${form.adultCount},
+                       arrCode=${form.arrCode},
+                       basePrice=${form.basePrice},
+                       childCount=${form.childCount},
+                       depCode=${form.depCode},
+                       depDay=${form.depDay},
+                       depMonth=${form.depMonth},
+                       depYear=${form.depYear},
+                       tourDays=${form.tourDays}
+                    )}">&gt;</a>
+        </li>
+        <li th:class="${page.number == page.totalPages - 1}? 'disabled' : null">
+            <a href="tours" th:href="@{/tours/search(
+                       page=${page.totalPages - 1}, size=${page.size},
+                       adultCount=${form.adultCount},
+                       arrCode=${form.arrCode},
+                       basePrice=${form.basePrice},
+                       childCount=${form.childCount},
+                       depCode=${form.depCode},
+                       depDay=${form.depDay},
+                       depMonth=${form.depMonth},
+                       depYear=${form.depYear},
+                       tourDays=${form.tourDays}
+                    )}">&gt;&gt;</a>
+        </li>
+    </ul>
 </body>
 </html>

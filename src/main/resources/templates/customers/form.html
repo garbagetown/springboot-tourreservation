@@ -7,7 +7,7 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <div layout:include="common/top::top" />
+    <div th:replace="common/top::top" />
     <h2 th:text="#{label.tr.managecustomer.managecustomerMessage}" />
     <div class="panel panel-info">
         <div th:utext="#{label.tr.managecustomer.createFormMessage}"/>

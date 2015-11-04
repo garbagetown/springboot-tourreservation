@@ -1,13 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
-      layout:decorator="layout">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
 </head>
 <body>
-<div layout:fragment="reservation">
+<div th:fragment="reservation">
     <table class="table table-striped" th:object="${output.reserve}">
         <caption th:text="#{label.tr.searchtour.tourDetailCaptionMessage}" />
         <tr>

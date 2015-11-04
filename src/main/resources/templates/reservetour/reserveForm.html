@@ -9,7 +9,7 @@
 <body>
 <div layout:fragment="content">
 
-    <div layout:include="common/top::top" />
+    <div th:include="common/top::top" />
     <h2 th:text="#{label.tr.searchtour.titleDetailScreenMessage}" />
     <div class="panel panel-info">
         <div th:utext="#{label.tr.searchtour.detailScreenFlowMessage}"/>

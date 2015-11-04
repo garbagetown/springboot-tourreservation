@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
-      layout:decorator="layout">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8"/>
 </head>
 <body>
-<div layout:fragment="customer">
+<div th:fragment="customer">
     <table class="table table-striped" sec:authorize="hasRole('ROLE_USER')" th:object="${output.customer}">
         <caption th:text="#{label.tr.searchtour.representative}" />
         <tr>
