@@ -7,7 +7,7 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <div layout:include="common/top" />
+    <div layout:include="common/top::top" />
     <h2 th:text="#{label.tr.searchtour.searchTourMessage}" />
     <div class="panel panel-info">
         <div th:utext="#{label.tr.searchtour.searchTourFlowMessage}"/>
@@ -112,7 +112,7 @@
         <hr/>
         <div class="alert alert-warning" role="alert" th:text="#{label.tr.searchtour.resultCountMessage(${page.totalElements})}" />
         <div class="text-center">
-            <div th:replace="tours/pagination" />
+            <div layout:include="tours/pagination::pagination" />
         </div>
     </div>
 
@@ -152,7 +152,7 @@
 
     <div th:if="${page}">
         <div class="text-center">
-            <div th:replace="tours/pagination" />
+            <div layout:include="tours/pagination::pagination" />
         </div>
     </div>
 </div>

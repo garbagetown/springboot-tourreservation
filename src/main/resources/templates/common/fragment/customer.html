@@ -7,7 +7,7 @@
     <meta charset="UTF-8"/>
 </head>
 <body>
-<div layout:fragment="reservation">
+<div layout:fragment="customer">
     <table class="table table-striped" sec:authorize="hasRole('ROLE_USER')" th:object="${output.customer}">
         <caption th:text="#{label.tr.searchtour.representative}" />
         <tr>

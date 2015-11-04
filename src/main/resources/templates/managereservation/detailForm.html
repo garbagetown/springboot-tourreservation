@@ -8,7 +8,7 @@
 <body>
 <div layout:fragment="content">
 
-    <div layout:include="common/top" />
+    <div layout:include="common/top::top" />
 
     <h1 th:text="#{label.tr.managereservation.manageReservationShowScreenTitleMessage}" />
     <div class="panel panel-info">
@@ -21,11 +21,11 @@
 
     <div th:if="${output.reserve.transfer == '0'}" layout:include="common/fragment/payment" />
 
-    <div layout:include="common/fragment/reservation" />
+    <div layout:include="common/fragment/reservation::reservation" />
 
-    <div layout:include="common/fragment/customer" />
+    <div layout:include="common/fragment/customer::customer" />
 
-    <div layout:include="common/fragment/price" />
+    <div layout:include="common/fragment/price::price" />
 
     <table>
         <caption th:text="#{label.tr.common.specialNotes}" />

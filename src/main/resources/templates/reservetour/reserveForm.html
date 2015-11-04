@@ -9,7 +9,7 @@
 <body>
 <div layout:fragment="content">
 
-    <div layout:include="common/top" />
+    <div layout:include="common/top::top" />
     <h2 th:text="#{label.tr.searchtour.titleDetailScreenMessage}" />
     <div class="panel panel-info">
         <div th:utext="#{label.tr.searchtour.detailScreenFlowMessage}"/>
@@ -18,11 +18,11 @@
     <div sec:authorize="!hasRole('ROLE_USER')" th:utext="#{label.tr.searchtour.loginToReserveMessage}" />
     <div sec:authorize="hasRole('ROLE_USER')" th:utext="#{label.tr.searchtour.pressReserveBtnMessage}" />
 
-    <div layout:include="common/fragment/tourinfo" />
+    <div layout:include="common/fragment/tourinfo::tourinfo" />
 
-    <div layout:include="common/fragment/customer" />
+    <div layout:include="common/fragment/customer::customer" />
 
-    <div layout:include="common/fragment/price" />
+    <div layout:include="common/fragment/price::price" />
 
     <div sec:authorize="hasRole('ROLE_USER')">
         <form>
