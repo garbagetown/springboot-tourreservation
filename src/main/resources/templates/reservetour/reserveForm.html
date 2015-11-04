@@ -10,6 +10,7 @@
 <div layout:fragment="content">
 
     <div th:include="common/top::top" />
+
     <h2 th:text="#{label.tr.searchtour.titleDetailScreenMessage}" />
     <div class="panel panel-info">
         <div th:utext="#{label.tr.searchtour.detailScreenFlowMessage}"/>
@@ -18,21 +19,16 @@
     <div sec:authorize="!hasRole('ROLE_USER')" th:utext="#{label.tr.searchtour.loginToReserveMessage}" />
     <div sec:authorize="hasRole('ROLE_USER')" th:utext="#{label.tr.searchtour.pressReserveBtnMessage}" />
 
-    <div layout:include="common/fragment/tourinfo::tourinfo" />
+    <div th:replace="common/fragment/tourinfo::tourinfo" />
 
-    <div layout:include="common/fragment/customer::customer" />
+    <div th:replace="common/fragment/customer::customer" />
 
-    <div layout:include="common/fragment/price::price" />
+    <div th:replace="common/fragment/price::price" />
 
     <div sec:authorize="hasRole('ROLE_USER')">
         <form>
-            <table class="table table-striped" >
-                <thead>
-                <tr>
-                    <th colspan="2" th:text="#{label.tr.common.specialNotes}" />
-                </tr>
-                </thead>
-                <tbody>
+            <table class="table table-striped">
+                <caption th:text="#{label.tr.common.specialNotes}" />
                 <tr>
                     <td th:text="#{label.tr.common.opinionSuggestion}" />
                     <td>
@@ -41,7 +37,6 @@
                         <div th:text="#{label.tr.searchtour.opinionSuggestionMessage}" />
                     </td>
                 </tr>
-                </tbody>
             </table>
             <button class="btn btn-default" th:text="#{label.tr.common.confirm}" />
         </form>
