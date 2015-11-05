@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<div layout:fragment="content">
+
+    <div th:include="common/top::top" />
+
+    <h2 th:text="#{label.tr.searchtour.titleConfirmScreenMessage}" />
+    <div class="panel panel-info">
+        <div th:utext="#{label.tr.searchtour.confirmScreenFlowMessage}"/>
+    </div>
+
+    <div th:utext="#{label.tr.searchtour.pressReserveBtnMessage}" />
+
+    <div th:replace="common/fragment/tourinfo::tourinfo" />
+
+    <div th:replace="common/fragment/customer::customer" />
+
+    <div th:replace="common/fragment/price::price" />
+
+    <table class="table table-striped">
+        <caption th:text="#{label.tr.common.specialNotes}" />
+        <tr>
+            <td th:text="#{label.tr.common.opinionSuggestion}" />
+            <td th:text="${reserveTourForm.remarks}" />
+        </tr>
+    </table>
+
+    <form th:action="${#httpServletRequest.requestURI + '?' + #httpServletRequest.queryString}" method="post">
+        <input type="hidden" name="adultCount" th:value="${reserveTourForm.adultCount}" />
+        <input type="hidden" name="childCount" th:value="${reserveTourForm.childCount}" />
+        <input type="hidden" name="remarks" th:value="${reserveTourForm.remarks}" />
+        <input type="hidden" name="page" th:value="${param.page[0]}" />
+        <input type="hidden" name="size" th:value="${param.size[0]}" />
+        <button class="btn btn-default" th:text="#{label.tr.searchtour.confirmedMessage}" />
+    </form>
+    <form th:action="${#httpServletRequest.requestURI + '?' + #httpServletRequest.queryString}" method="post">
+        <input type="hidden" name="adultCount" th:value="${reserveTourForm.adultCount}" />
+        <input type="hidden" name="childCount" th:value="${reserveTourForm.childCount}" />
+        <input type="hidden" name="remarks" th:value="${reserveTourForm.remarks}" />
+        <input type="hidden" name="page" th:value="${param.page[0]}" />
+        <input type="hidden" name="size" th:value="${param.size[0]}" />
+        <button name="redo" class="btn btn-default" th:text="#{label.tr.common.goBackMessage}" />
+    </form>
+</div>
+</body>
+</html>

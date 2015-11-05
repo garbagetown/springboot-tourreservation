@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<div layout:fragment="content">
+
+    <div th:include="common/top::top" />
+
+    <h2 th:text="#{label.tr.searchtour.reserveScreenTitleMessage}" />
+    <div class="panel panel-success">
+        <div th:utext="#{label.tr.searchtour.reserveScreenFlowMessage}"/>
+    </div>
+
+    <button class="btn btn-default" th:text="#{label.tr.searchtour.goTourSearchScreenMessage}" />
+    <button class="btn btn-default" th:text="#{label.tr.common.gotoMenuMessage}" />
+</div>
+</body>
+</html>

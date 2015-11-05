@@ -133,10 +133,17 @@
             <tr th:each="tour,status : ${page.content}">
                 <td th:text="${page.size * page.number + status.count}" />
                 <td>
-                    <a href="tours" th:href="@{'/tours/' + ${tour.tourCode}(
+                    <a href="tours" th:href="@{'/tours/' + ${tour.tourCode} + '/reserve'(
                        form,
                        adultCount=${form.adultCount},
+                       arrCode=${form.arrCode},
+                       basePrice=${form.basePrice},
                        childCount=${form.childCount},
+                       depCode=${form.depCode},
+                       depDay=${form.depDay},
+                       depMonth=${form.depMonth},
+                       depYear=${form.depYear},
+                       tourDays=${form.tourDays},
                        page=${page.number},
                        size=${page.size}
                     )}" th:text="${tour.tourName}" />
