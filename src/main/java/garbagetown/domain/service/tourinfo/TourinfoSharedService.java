@@ -9,5 +9,7 @@ public interface TourinfoSharedService {
 
     Tourinfo findOne(String tourCode);
 
+    Tourinfo findOneForUpdate(String tourCode);
+
     Boolean isOverPaymentLimit(Tourinfo tourinfo);
 }

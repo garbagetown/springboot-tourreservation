@@ -29,6 +29,11 @@ public class TourinfoSharedServiceImpl implements TourinfoSharedService {
     }
 
     @Override
+    public Tourinfo findOneForUpdate(String tourCode) {
+        return repository.findOneForUpdate(tourCode);
+    }
+
+    @Override
     public Boolean isOverPaymentLimit(Tourinfo tourinfo) {
         Assert.notNull(tourinfo, "tour must not be null");
 
