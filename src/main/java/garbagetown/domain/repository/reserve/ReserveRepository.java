@@ -18,5 +18,5 @@ public interface ReserveRepository extends JpaRepository<Reserve, String> {
     List<Reserve> findAllByCustomer(@Param("customer") Customer customer);
 
     @Query("SELECT SUM(r.adultCount + r.childCount) FROM Reserve r WHERE r.tourInfo = :tourInfo")
-    Long countReservedPersonSumByTourInfo(@Param("tourinfo") Tourinfo tourinfo);
+    Long countReservedPersonSumByTourinfo(@Param("tourinfo") Tourinfo tourinfo);
 }
