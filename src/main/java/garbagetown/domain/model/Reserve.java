@@ -18,6 +18,9 @@ import java.util.Date;
 @Table(name = "reserve")
 public class Reserve implements Serializable {
 
+    public static final String TRANSFERED = "1";
+    public static final String NOT_TRANSFERED = "0";
+
     @Id
     @NotNull
     @Size(min = 1, max = 8)
