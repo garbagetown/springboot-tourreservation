@@ -44,6 +44,16 @@ public class Config {
         return sequencer;
     }
 
+    @Bean
+    Sequencer<String> reserveNoSeq() {
+        JdbcSequencer<String> sequencer = new JdbcSequencer<>();
+        sequencer.setJdbcTemplate(jdbcTemplate);
+        sequencer.setNextValueQuery("SELECT TO_CHAR(nextval('RESERVE_NO_SEQ'),'FM00000000') AS reserveNo");
+        sequencer.setCurrentValueQuery("SELECT TO_CHAR(currval('RESERVE_NO_SEQ'),'FM00000000') AS reserveNo");
+        sequencer.setSequenceClass(String.class);
+        return sequencer;
+    }
+
     @Bean(name = "dateFactory")
     JodaTimeDateFactory jodaTimeDateFactory() {
         return new DefaultJodaTimeDateFactory();
