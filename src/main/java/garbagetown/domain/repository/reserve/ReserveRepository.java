@@ -2,6 +2,7 @@ package garbagetown.domain.repository.reserve;
 
 import garbagetown.domain.model.Customer;
 import garbagetown.domain.model.Reserve;
+import garbagetown.domain.model.Tourinfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -15,4 +16,7 @@ public interface ReserveRepository extends JpaRepository<Reserve, String> {
 
     @Query("SELECT r FROM Reserve AS r LEFT JOIN FETCH r.tourinfo AS t LEFT JOIN FETCH t.departure LEFT JOIN FETCH t.arrival WHERE r.customer = :customer ORDER BY t.depDay, r.reserveNo")
     List<Reserve> findAllByCustomer(@Param("customer") Customer customer);
+
+    @Query("SELECT SUM(r.adultCount + r.childCount) FROM Reserve r WHERE r.tourInfo = :tourInfo")
+    Long countReservedPersonSumByTourInfo(@Param("tourinfo") Tourinfo tourinfo);
 }
