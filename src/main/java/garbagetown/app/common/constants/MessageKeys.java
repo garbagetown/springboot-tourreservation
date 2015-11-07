@@ -445,4 +445,14 @@ public class MessageKeys {
     public static final String TOURCODE = "tourCode";
     /** remarks=remarks */
     public static final String REMARKS = "remarks";
+    /** e.tr.0001=Can not cancel a reservation paid for. */
+    public static final String E_TR_0001 = "e.tr.0001";
+    /** e.tr.0002=Can not cancel the reservation deadline has passed for payment. */
+    public static final String E_TR_0002 = "e.tr.0002";
+    /** e.tr.0003=Could not be canceled. Please try again. */
+    public static final String E_TR_0003 = "e.tr.0003";
+    /** e.tr.0004=Today is after payment limit. */
+    public static final String E_TR_0004 = "e.tr.0004";
+    /** e.tr.0005=Reserved number is larger than available vacancy */
+    public static final String E_TR_0005 = "e.tr.0005";
 }
