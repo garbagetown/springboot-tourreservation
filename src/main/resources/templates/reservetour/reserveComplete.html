@@ -15,8 +15,12 @@
         <div th:utext="#{label.tr.searchtour.reserveScreenFlowMessage}"/>
     </div>
 
-    <button class="btn btn-default" th:text="#{label.tr.searchtour.goTourSearchScreenMessage}" />
-    <button class="btn btn-default" th:text="#{label.tr.common.gotoMenuMessage}" />
+    <form th:action="@{/tours/search}" method="get">
+        <button class="btn btn-default" th:text="#{label.tr.searchtour.goTourSearchScreenMessage}" />
+    </form>
+    <form th:action="@{/}" method="get">
+        <button class="btn btn-default" th:text="#{label.tr.common.gotoMenuMessage}" />
+    </form>
 </div>
 </body>
 </html>
