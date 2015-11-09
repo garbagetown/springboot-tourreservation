@@ -1,5 +1,6 @@
 package garbagetown.app.reservetour;
 
+import garbagetown.domain.service.reserve.ReserveTourOutput;
 import garbagetown.domain.service.userdetails.ReservationUserDetails;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
@@ -10,6 +11,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.terasoluna.gfw.common.exception.BusinessException;
 
 import javax.inject.Inject;
 
@@ -54,11 +57,20 @@ public class ReserveTourController {
     @RequestMapping(value = "{tourCode}/reserve", method = RequestMethod.POST)
     public String reserve(@AuthenticationPrincipal ReservationUserDetails userDetails,
                           @PathVariable("tourCode") String tourCode, @Validated ReserveTourForm form,
-                          BindingResult result, Model model) {
+                          BindingResult result, Model model, RedirectAttributes redirectAttributes) {
 
         if (result.hasErrors()) {
             return reserveForm(userDetails, tourCode, form, model);
         }
+
+        try {
+            ReserveTourOutput output = reserveTourHelper.reserve(userDetails, tourCode, form);
+            redirectAttributes.addAttribute("output", output);
+        } catch (BusinessException e) {
+            model.addAttribute(e.getResultMessages());
+            return reserveForm(userDetails, tourCode, form, model);
+        }
+
         return "redirect:/tours/{tourCode}/reserve?complete";
     }
 
