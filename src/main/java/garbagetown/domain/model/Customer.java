@@ -1,7 +1,9 @@
 package garbagetown.domain.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -14,6 +16,8 @@ import java.util.List;
  * Created by garbagetown on 10/10/15.
  */
 @Data
+@ToString(exclude = "reserves")
+@EqualsAndHashCode(exclude = "reserves")
 @NoArgsConstructor
 @Entity
 @Table(name = "customer")
