@@ -45,3 +45,7 @@ textarea {
   cursor: not-allowed;
   pointer-events: none;
 }
+
+.page-header {
+  margin: 20px 0px;
+}
