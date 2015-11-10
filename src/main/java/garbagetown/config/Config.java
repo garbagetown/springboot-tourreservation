@@ -1,5 +1,6 @@
 package garbagetown.config;
 
+import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.dozer.spring.DozerBeanMapperFactoryBean;
 import org.springframework.beans.factory.FactoryBean;
@@ -14,6 +15,7 @@ import org.terasoluna.gfw.common.sequencer.JdbcSequencer;
 import org.terasoluna.gfw.common.sequencer.Sequencer;
 
 import javax.inject.Inject;
+import java.util.Arrays;
 
 /**
  * Created by garbagetown on 10/14/15.
@@ -30,8 +32,10 @@ public class Config {
     }
 
     @Bean
-    FactoryBean<Mapper> mapper() throws Exception {
-        return new DozerBeanMapperFactoryBean();
+    DozerBeanMapper mapper() {
+        DozerBeanMapper dozerBeanMapper = new DozerBeanMapper();
+        dozerBeanMapper.setMappingFiles(Arrays.asList("dozer/domain-mapping.xml"));
+        return dozerBeanMapper;
     }
 
     @Bean
