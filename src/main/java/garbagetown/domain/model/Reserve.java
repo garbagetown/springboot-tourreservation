@@ -53,10 +53,10 @@ public class Reserve implements Serializable {
     private String remarks;
 
     @JoinColumn(name = "customer_code", referencedColumnName = "customer_code")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Customer customer;
 
     @JoinColumn(name = "tour_code", referencedColumnName = "tour_code")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Tourinfo tourinfo;
 }

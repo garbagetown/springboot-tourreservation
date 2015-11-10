@@ -12,8 +12,30 @@
 
     <h2 th:text="#{label.tr.searchtour.reserveScreenTitleMessage}" />
     <div class="panel panel-success">
-        <div th:utext="#{label.tr.searchtour.reserveScreenFlowMessage}"/>
+        <div th:utext="#{label.tr.searchtour.reserveScreenFlowMessage}" />
     </div>
+
+    <p th:utext="#{label.tr.searchtour.searchtourReservePdfMessage}" />
+
+    <p th:utext="#{label.tr.searchtour.searchtourReserveDetailMessage}" />
+
+    <button class="btn btn-default" th:text="#{label.tr.common.downloadpdfBtnMessage}" disabled="disabled" />
+
+    <div th:replace="common/fragment/payment::payment" />
+
+    <div th:replace="common/fragment/reservation::reservation" />
+
+    <div th:replace="common/fragment/customer::customer" />
+
+    <div th:replace="common/fragment/price::price" />
+
+    <table class="table table-striped">
+        <caption th:text="#{label.tr.common.specialNotes}" />
+        <tr>
+            <td th:text="#{label.tr.common.opinionSuggestion}" />
+            <td th:text="${output.reserve.remarks}" />
+        </tr>
+    </table>
 
     <form th:action="@{/tours/search}" method="get">
         <button class="btn btn-default" th:text="#{label.tr.searchtour.goTourSearchScreenMessage}" />

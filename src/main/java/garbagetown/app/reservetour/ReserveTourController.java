@@ -65,7 +65,7 @@ public class ReserveTourController {
 
         try {
             ReserveTourOutput output = reserveTourHelper.reserve(userDetails, tourCode, form);
-            redirectAttributes.addAttribute("output", output);
+            redirectAttributes.addFlashAttribute("output", output);
         } catch (BusinessException e) {
             model.addAttribute(e.getResultMessages());
             return reserveForm(userDetails, tourCode, form, model);
