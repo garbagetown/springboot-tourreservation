@@ -1,9 +1,6 @@
 package garbagetown.config;
 
 import org.dozer.DozerBeanMapper;
-import org.dozer.Mapper;
-import org.dozer.spring.DozerBeanMapperFactoryBean;
-import org.springframework.beans.factory.FactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
