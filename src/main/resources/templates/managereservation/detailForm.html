@@ -19,13 +19,13 @@
     <p th:if="${output.reserve.transfer == '0'}" th:utext="#{label.tr.managereservation.paymentReminderMessage}" />
     <p th:if="${output.reserve.transfer == '1'}" th:utext="#{label.tr.managereservation.paymentNoCancelMessage}" />
 
-    <div th:if="${output.reserve.transfer == '0'}" layout:include="common/fragment/payment" />
+    <div th:if="${output.reserve.transfer == '0'}" th:replace="common/fragment/payment" />
 
-    <div layout:include="common/fragment/reservation::reservation" />
+    <div th:replace="common/fragment/reservation::reservation" />
 
-    <div layout:include="common/fragment/customer::customer" />
+    <div th:replace="common/fragment/customer::customer" />
 
-    <div layout:include="common/fragment/price::price" />
+    <div th:replace="common/fragment/price::price" />
 
     <table>
         <caption th:text="#{label.tr.common.specialNotes}" />
