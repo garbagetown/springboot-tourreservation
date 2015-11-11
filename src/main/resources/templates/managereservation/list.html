@@ -58,8 +58,13 @@
                     <button class="btn btn-default" th:text="#{label.tr.managereservation.showDetailsBtnMessage}" />
                 </form>
                 <div th:if="!${row.limitExceeding} and *{transfer} == '0'">
-                    <button class="btn btn-default" th:text="#{label.tr.managereservation.changeReservationBtnMessage}" />
-                    <button class="btn btn-default" th:text="#{label.tr.managereservation.cancelReservationBtnMessage}" />
+                    <form th:action="@{'/reservations/' + *{reserveNo} + '/update'}" method="get">
+                        <button name="form" class="btn btn-default"
+                                th:text="#{label.tr.managereservation.changeReservationBtnMessage}" />
+                    </form>
+                    <form th:action="@{'/reservations/' + *{reserveNo} + '/cancel'}" method="get">
+                        <button class="btn btn-default" th:text="#{label.tr.managereservation.cancelReservationBtnMessage}" />
+                    </form>
                 </div>
             </td>
         </tr>

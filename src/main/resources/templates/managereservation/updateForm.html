@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<div layout:fragment="content">
+
+    <div th:replace="common/top::top" />
+
+    <h1 th:text="#{label.tr.managereservation.manageReservationEditScreenTitle}" />
+    <div class="panel panel-info">
+        <span th:utext="#{label.tr.managereservation.manageReservationEditFlowMessage}" />
+    </div>
+    <p th:utext="#{label.tr.managereservation.manageReservationEditMessage}" />
+
+    <form th:action="@{'/reservations' + ${reserve.reserveNo} + '/update'}" method="post">
+        <table class="table table-striped" th:object="${reserve}">
+            <caption th:text="#{label.tr.searchtour.tourDetailCaptionMessage}" />
+            <tr>
+                <td th:text="#{label.tr.searchtour.reserveNo}" />
+                <td th:text="*{reserveNo}" />
+            </tr>
+            <tr>
+                <td th:text="#{label.tr.searchtour.reserveDate}" />
+                <td th:text="*{#dates.format(reservedDay, #messages.msg('label.tr.common.datePattern'))}" />
+            </tr>
+            <tr>
+                <td th:text="#{label.tr.searchtour.tourname}" />
+                <td th:text="*{tourinfo.tourName}" />
+            </tr>
+            <tr>
+                <td th:text="#{label.tr.searchtour.depDay}" />
+                <td th:text="*{tourinfo.depDay}" />
+            </tr>
+            <tr>
+                <td th:text="#{label.tr.searchtour.tourDays}" />
+                <td th:text="*{tourinfo.tourDays}" />
+            </tr>
+            <tr>
+                <td th:text="#{label.tr.searchtour.depName}" />
+                <td th:text="*{tourinfo.departure.depName}" />
+            </tr>
+            <tr>
+                <td th:text="#{label.tr.searchtour.arrName}" />
+                <td th:text="*{tourinfo.arrival.arrName}" />
+            </tr>
+            <tr>
+                <td th:text="#{label.tr.common.persons}" />
+                <td>
+                    <span th:text="#{label.tr.common.adult}" />
+                    <select name="adultCount" th:field="*{adultCount}" th:errorclass="fieldError">
+                        <option th:each="m : ${CL_ADULT_COUNT}" th:value="${m.key}" th:text="${m.value}" />
+                    </select>
+                    <span th:text="#{label.tr.common.person}" />
+                    <span th:text="#{label.tr.common.child}" />
+                    <select name="childCount" th:field="*{childCount}" th:errorclass="fieldError">
+                        <option th:each="m : ${CL_CHILD_COUNT}" th:value="${m.key}" th:text="${m.value}" />
+                    </select>
+                    <span th:text="#{label.tr.common.person}" />
+                </td>
+            </tr>
+        </table>
+        <table class="table table-striped" th:object="${reserve}">
+            <caption th:text="#{label.tr.common.specialNotes}" />
+            <tr>
+                <td th:text="#{label.tr.common.opinionSuggestion}" />
+                <td th:text="*{remarks}" />
+            </tr>
+        </table>
+        <button name="backTolist" class="btn btn-default" th:text="#{label.tr.managereservation.returnToListScreenBtnMessage}" />
+        <button name="confirm" class="btn btn-default" th:text="#{label.tr.managereservation.confirmEditBtnMessage}" />
+    </form>
+</div>
+</body>
+</html>
