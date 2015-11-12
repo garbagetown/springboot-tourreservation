@@ -16,7 +16,7 @@
     </div>
     <p th:utext="#{label.tr.managereservation.manageReservationEditMessage}" />
 
-    <form th:action="@{'/reservations' + ${reserve.reserveNo} + '/update'}" method="post">
+    <form th:action="@{'/reservations/' + ${reserve.reserveNo} + '/update'}" method="post">
         <table class="table table-striped" th:object="${reserve}">
             <caption th:text="#{label.tr.searchtour.tourDetailCaptionMessage}" />
             <tr>
@@ -70,7 +70,7 @@
                 <td th:text="*{remarks}" />
             </tr>
         </table>
-        <button name="backTolist" class="btn btn-default" th:text="#{label.tr.managereservation.returnToListScreenBtnMessage}" />
+        <button name="backToList" class="btn btn-default" th:text="#{label.tr.managereservation.returnToListScreenBtnMessage}" />
         <button name="confirm" class="btn btn-default" th:text="#{label.tr.managereservation.confirmEditBtnMessage}" />
     </form>
 </div>

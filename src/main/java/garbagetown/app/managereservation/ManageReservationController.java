@@ -55,4 +55,9 @@ public class ManageReservationController {
         model.addAttribute(reserve);
         return "managereservation/updateForm";
     }
+
+    @RequestMapping(value = "{reserveNo}/update", method = RequestMethod.POST, params = "backToList")
+    public String updateBackList() {
+        return "redirect:/reservations/me";
+    }
 }
