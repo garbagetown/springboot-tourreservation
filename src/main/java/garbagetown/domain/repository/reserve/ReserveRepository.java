@@ -4,9 +4,11 @@ import garbagetown.domain.model.Customer;
 import garbagetown.domain.model.Reserve;
 import garbagetown.domain.model.Tourinfo;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import javax.persistence.LockModeType;
 import java.util.List;
 
 /**
@@ -19,4 +21,8 @@ public interface ReserveRepository extends JpaRepository<Reserve, String> {
 
     @Query("SELECT SUM(r.adultCount + r.childCount) FROM Reserve r WHERE r.tourinfo = :tourinfo")
     Long countReservedPersonSumByTourinfo(@Param("tourinfo") Tourinfo tourinfo);
+
+    @Query("SELECT r FROM Reserve r WHERE reserveNo = :reserveNo")
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    Reserve findOneForUpdate(@Param("reserveNo") String reserveNo);
 }
