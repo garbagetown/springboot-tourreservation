@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<div layout:fragment="content">
+
+    <div th:replace="common/top::top" />
+
+    <h1 th:text="#{label.tr.managereservation.beforecancelScreenTitleMessage}" />
+    <div class="panel panel-info">
+        <span th:utext="#{label.tr.managereservation.beforecancelScreenFlowMessage}" />
+    </div>
+    <p th:utext="#{label.tr.managereservation.beforeCancelScreenMessage}" />
+
+    <div th:replace="common/fragment/reservation::reservation" />
+
+    <div th:replace="common/fragment/customer::customer" />
+
+    <div th:replace="common/fragment/price::price" />
+
+    <table>
+        <caption th:text="#{label.tr.common.specialNotes}" />
+        <tr>
+            <td th:text="#{label.tr.common.opinionSuggestion}" />
+            <td th:text="${output.reserve.remarks}" />
+        </tr>
+    </table>
+
+    <form th:action="${#httpServletRequest.requestURI}" method="post">
+        <button name="backToList" class="btn btn-default" th:text="#{label.tr.managereservation.returnToListScreenBtnMessage}" />
+        <button class="btn btn-default" th:text="#{label.tr.managereservation.cancelReservationBtnMessage}" />
+    </form>
+</div>
+</body>
+</html>

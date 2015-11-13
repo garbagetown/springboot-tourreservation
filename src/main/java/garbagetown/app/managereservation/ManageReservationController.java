@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -56,8 +57,23 @@ public class ManageReservationController {
         return "managereservation/updateForm";
     }
 
-    @RequestMapping(value = "{reserveNo}/update", method = RequestMethod.POST, params = "backToList")
-    public String updateBackList() {
+    @RequestMapping(value = {"{reserveNo}/update", "{reserveNo}/cancel"}, method = RequestMethod.POST,
+            params = "backToList")
+    public String backToList() {
         return "redirect:/reservations/me";
+    }
+
+    @RequestMapping(value = "{reserveNo}/cancel", method = RequestMethod.GET)
+    public String cancelConfirm(@PathVariable("reserveNo") String reserveNo, Model model) {
+        ReservationDetailOutput output = manageReservationHelper.findDetail(reserveNo);
+
+        model.addAttribute("output", output);
+        return "managereservation/cancelConfirm";
+    }
+
+    @RequestMapping(value = "{reserveNo}/cancel", method = RequestMethod.POST)
+    public String cancel(@PathVariable("reserveNo") String reserveNo, Model model,
+                         RedirectAttributes redirectAttributes) {
+        return "redirect:/reservations/{reserveNo}/cancel?complete";
     }
 }
