@@ -102,6 +102,25 @@ public class ReserveServiceImpl implements ReserveService {
         return output;
     }
 
+    @Override
+    public void cancel(String reserveNo) {
+
+        Reserve reserve = reserveRepository.findOneForUpdate(reserveNo);
+
+        if (Reserve.TRANSFERED.equals(reserve.getTransfer())) {
+            throw new BusinessException(ResultMessages.error().add(MessageKeys.E_TR_0001));
+        }
+        if (tourinfoSharedService.isOverPaymentLimit(reserve.getTourinfo())) {
+            throw new BusinessException(ResultMessages.error().add(MessageKeys.E_TR_0002));
+        }
+
+        if (reserve != null) {
+            reserveRepository.delete(reserveNo);
+        } else {
+            throw new BusinessException(ResultMessages.error().add(MessageKeys.E_TR_0003));
+        }
+    }
+
     private long vacants(Tourinfo tourinfo) {
         int max = tourinfo.getAvaRecMax();
         Long reserved = reserveRepository.countReservedPersonSumByTourinfo(tourinfo);

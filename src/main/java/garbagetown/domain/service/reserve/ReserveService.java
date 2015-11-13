@@ -15,4 +15,6 @@ public interface ReserveService {
     Reserve findOne(String reserveNo);
 
     ReserveTourOutput reserve(ReserveTourInput input) throws BusinessException;
+
+    void cancel(String reserveNo);
 }
