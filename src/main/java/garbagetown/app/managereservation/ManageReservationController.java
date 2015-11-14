@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.terasoluna.gfw.common.exception.BusinessException;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -72,8 +73,20 @@ public class ManageReservationController {
     }
 
     @RequestMapping(value = "{reserveNo}/cancel", method = RequestMethod.POST)
-    public String cancel(@PathVariable("reserveNo") String reserveNo, Model model,
-                         RedirectAttributes redirectAttributes) {
+    public String cancel(@PathVariable("reserveNo") String reserveNo, Model model) {
+        try {
+            service.cancel(reserveNo);
+        } catch (BusinessException e) {
+            model.addAttribute(e.getResultMessages());
+            return cancelConfirm(reserveNo, model);
+        }
+
         return "redirect:/reservations/{reserveNo}/cancel?complete";
+    }
+
+    @RequestMapping(value = "{reserveNo}/cancel", method = RequestMethod.GET, params = "complete")
+    public String cancelComplete(@PathVariable("reserveNo") String reserveNo, Model model) {
+        model.addAttribute("reserveNo", reserveNo);
+        return "managereservation/cancelComplete";
     }
 }

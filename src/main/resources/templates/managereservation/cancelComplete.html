@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="layout">
+<head>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<div layout:fragment="content">
+
+    <div th:replace="common/top::top" />
+
+    <h1 th:text="#{label.tr.managereservation.aftercancelScreenTitleMessage}" />
+    <div class="panel panel-info">
+        <span th:utext="#{label.tr.managereservation.aftercancelScreenFlowMessage}" />
+    </div>
+    <p th:utext="#{label.tr.managereservation.aftercancelScreenMessage(${reserveNo})}" />
+
+    <form th:action="@{/reservations/me}" method="get">
+        <button class="btn btn-default" th:text="#{label.tr.managereservation.returnToListScreenBtnMessage}" />
+    </form>
+    <form th:action="@{/}" method="get">
+        <button class="btn btn-default" th:text="#{label.tr.common.gotoMenuMessage}" />
+    </form>
+</div>
+</body>
+</html>
