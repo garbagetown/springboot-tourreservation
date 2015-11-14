@@ -7,10 +7,11 @@ import org.dozer.Mapper;
 import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.terasoluna.gfw.common.exception.BusinessException;
 
 import javax.inject.Inject;
@@ -24,7 +25,7 @@ import java.util.List;
 public class ManageReservationController {
 
     @Inject
-    ManageReservationHelper manageReservationHelper;
+    ManageReservationHelper helper;
 
     @Inject
     ReserveService service;
@@ -34,7 +35,7 @@ public class ManageReservationController {
 
     @RequestMapping(value="me", method = RequestMethod.GET)
     public String list(@AuthenticationPrincipal ReservationUserDetails userDetails ,Model model) {
-        List<ReserveRowOutput> rows = manageReservationHelper.list(userDetails);
+        List<ReserveRowOutput> rows = helper.list(userDetails);
 
         model.addAttribute("rows", rows);
         return "managereservation/list";
@@ -42,7 +43,7 @@ public class ManageReservationController {
 
     @RequestMapping(value = "{reserveNo}", method = RequestMethod.GET)
     public String detailForm(@PathVariable("reserveNo") String reserveNo, Model model) {
-        ReservationDetailOutput output = manageReservationHelper.findDetail(reserveNo);
+        ReservationDetailOutput output = helper.findDetail(reserveNo);
 
         model.addAttribute("output", output);
         return "managereservation/detailForm";
@@ -58,6 +59,17 @@ public class ManageReservationController {
         return "managereservation/updateForm";
     }
 
+    @RequestMapping(value = "{reserveNo}/update", method = RequestMethod.POST, params = "confirm")
+    public String updateConfirm(@PathVariable("reserveNo") String reserveNo, @Validated ManageReservationForm form,
+                                BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            // TODO
+        }
+        ReservationDetailOutput output = helper.findDetail(reserveNo);
+        model.addAttribute("output", output);
+        return "managereservation/updateConfirm";
+    }
+
     @RequestMapping(value = {"{reserveNo}/update", "{reserveNo}/cancel"}, method = RequestMethod.POST,
             params = "backToList")
     public String backToList() {
@@ -66,7 +78,7 @@ public class ManageReservationController {
 
     @RequestMapping(value = "{reserveNo}/cancel", method = RequestMethod.GET)
     public String cancelConfirm(@PathVariable("reserveNo") String reserveNo, Model model) {
-        ReservationDetailOutput output = manageReservationHelper.findDetail(reserveNo);
+        ReservationDetailOutput output = helper.findDetail(reserveNo);
 
         model.addAttribute("output", output);
         return "managereservation/cancelConfirm";
