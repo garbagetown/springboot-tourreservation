@@ -11,4 +11,12 @@
         </copy-by-references>
     </configuration>
 
+    <mapping map-id="reserve_map_nonnull" map-null="false">
+        <class-a>
+            garbagetown.domain.service.reserve.ReservationUpdateInput
+        </class-a>
+        <class-b>
+            garbagetown.domain.model.Reserve
+        </class-b>
+    </mapping>
 </mappings>
