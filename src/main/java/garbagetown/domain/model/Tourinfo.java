@@ -1,7 +1,9 @@
 package garbagetown.domain.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.joda.time.DateTime;
 import sun.security.krb5.internal.KerberosTime;
 
@@ -16,6 +18,8 @@ import java.util.List;
  * Created by yu-umezawa on 2015/10/15.
  */
 @Data
+@ToString(exclude = {"reserveList","accommodation","arrival","departure"})
+@EqualsAndHashCode(exclude = {"reserveList","accommodation","arrival","departure"})
 @NoArgsConstructor
 @Entity
 @Table(name = "tourinfo")
