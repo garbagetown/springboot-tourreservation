@@ -34,9 +34,12 @@
 
     <div th:utext="#{label.tr.managereservation.manageReservationConfirmMessage}" />
 
-
+    <form th:action="${#httpServletRequest.requestURI}" method="post">
+        <input type="hidden" name="adultCount" th:value="${output.reserve.adultCount}" />
+        <input type="hidden" name="childCount" th:value="${output.reserve.childCount}" />
         <button name="redo" class="btn btn-default" th:text="#{label.tr.managereservation.changeReservationStaBtnMessage}" />
         <button class="btn btn-default" th:text="#{label.tr.managereservation.changeReservationFinBtnMessage}" />
+    </form>
 </div>
 </body>
 </html>

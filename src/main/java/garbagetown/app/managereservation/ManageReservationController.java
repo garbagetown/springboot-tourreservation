@@ -1,6 +1,8 @@
 package garbagetown.app.managereservation;
 
 import garbagetown.domain.model.Reserve;
+import garbagetown.domain.service.reserve.ReservationUpdateInput;
+import garbagetown.domain.service.reserve.ReservationUpdateOutput;
 import garbagetown.domain.service.reserve.ReserveService;
 import garbagetown.domain.service.userdetails.ReservationUserDetails;
 import org.dozer.Mapper;
@@ -12,6 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.terasoluna.gfw.common.exception.BusinessException;
 
 import javax.inject.Inject;
@@ -63,11 +66,39 @@ public class ManageReservationController {
     public String updateConfirm(@PathVariable("reserveNo") String reserveNo, @Validated ManageReservationForm form,
                                 BindingResult result, Model model) {
         if (result.hasErrors()) {
-            // TODO
+            updateRedo(reserveNo, form, model);
         }
         ReservationDetailOutput output = helper.findDetail(reserveNo);
         model.addAttribute("output", output);
         return "managereservation/updateConfirm";
+    }
+
+    @RequestMapping(value = "{reserveNo}/update", method = RequestMethod.POST, params = "redo")
+    public String updateRedo(@PathVariable("reserveNo") String reserveNo, ManageReservationForm form, Model model) {
+        Reserve reserve = service.findOne(reserveNo);
+        model.addAttribute(reserve);
+        return "managereservation/updateForm";
+    }
+
+    @RequestMapping(value = "{reserveNo}/update", method = RequestMethod.POST)
+    public String update(@PathVariable("reserveNo") String reserveNo, @Validated ManageReservationForm form,
+                         BindingResult result, Model model, RedirectAttributes redirectAttributes) {
+        if (result.hasErrors()) {
+            updateRedo(reserveNo, form, model);
+        }
+
+        ReservationUpdateInput input = mapper.map(form, ReservationUpdateInput.class);
+        input.setReserveNo(reserveNo);
+
+        ReservationUpdateOutput output = service.update(input);
+        redirectAttributes.addFlashAttribute("output", output);
+
+        return "redirect:/reservations/{reserveNo}/update?complete";
+    }
+
+    @RequestMapping(value = "{reserveNo}/update", method = RequestMethod.GET, params = "complete")
+    public String updateComplete() {
+        return "managereservation/updateComplete";
     }
 
     @RequestMapping(value = {"{reserveNo}/update", "{reserveNo}/cancel"}, method = RequestMethod.POST,

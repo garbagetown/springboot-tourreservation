@@ -109,7 +109,10 @@ public class ReserveServiceImpl implements ReserveService {
 
         Reserve reserve = findOne(input.getReserveNo());
 
+        mapper.map(input, reserve, "reserve_map_nonnull");
+
         Tourinfo tourinfo = reserve.getTourinfo();
+
         PriceCalculateOutput priceCalculateOutput = priceCalculateSharedService.calculatePrice(
                 tourinfo.getBasePrice(), input.getAdultCount(), input.getChildCount());
 
