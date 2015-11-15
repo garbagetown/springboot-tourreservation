@@ -103,6 +103,32 @@ public class ReserveServiceImpl implements ReserveService {
     }
 
     @Override
+    public ReservationUpdateOutput update(ReservationUpdateInput input) throws BusinessException {
+
+        // TODO check BusinessException
+
+        Reserve reserve = findOne(input.getReserveNo());
+
+        Tourinfo tourinfo = reserve.getTourinfo();
+        PriceCalculateOutput priceCalculateOutput = priceCalculateSharedService.calculatePrice(
+                tourinfo.getBasePrice(), input.getAdultCount(), input.getChildCount());
+
+        reserve.setSumPrice(priceCalculateOutput.getSumPrice());
+        reserveRepository.save(reserve);
+
+        ReservationUpdateOutput output = new ReservationUpdateOutput();
+        output.setReserve(reserve);
+        output.setPaymentTimeLimit(tourinfo.getPaymentLimit().toDate());
+        output.setPriceCalculateOutput(priceCalculateOutput);
+
+        // fetch to avoid LazyInitializationException
+        tourinfo.getDeparture().getDepCode();
+        tourinfo.getArrival().getArrCode();
+
+        return output;
+    }
+
+    @Override
     public void cancel(String reserveNo) {
 
         Reserve reserve = reserveRepository.findOneForUpdate(reserveNo);

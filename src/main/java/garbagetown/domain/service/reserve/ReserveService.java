@@ -16,5 +16,7 @@ public interface ReserveService {
 
     ReserveTourOutput reserve(ReserveTourInput input) throws BusinessException;
 
+    ReservationUpdateOutput update(ReservationUpdateInput input) throws BusinessException;
+
     void cancel(String reserveNo);
 }
