@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,6 +36,11 @@ public class ManageReservationController {
 
     @Inject
     Mapper mapper;
+
+    @ModelAttribute
+    public ManageReservationForm setUpForm() {
+        return new ManageReservationForm();
+    }
 
     @RequestMapping(value="me", method = RequestMethod.GET)
     public String list(@AuthenticationPrincipal ReservationUserDetails userDetails ,Model model) {
@@ -68,7 +74,7 @@ public class ManageReservationController {
         if (result.hasErrors()) {
             updateRedo(reserveNo, form, model);
         }
-        ReservationDetailOutput output = helper.findDetail(reserveNo);
+        ReservationDetailOutput output = helper.findDetail(reserveNo, form);
         model.addAttribute("output", output);
         return "managereservation/updateConfirm";
     }

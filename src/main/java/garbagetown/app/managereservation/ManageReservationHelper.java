@@ -67,4 +67,18 @@ public class ManageReservationHelper {
 
         return output;
     }
+
+    public ReservationDetailOutput findDetail(String reserveNo, ManageReservationForm form) {
+
+        ReservationDetailOutput output = findDetail(reserveNo);
+
+        Tourinfo tourinfo = output.getReserve().getTourinfo();
+
+        PriceCalculateOutput price = priceCalculateService.calculatePrice(tourinfo.getBasePrice(),
+                form.getAdultCount(), form.getChildCount());
+
+        output.setPriceCalculateOutput(price);
+
+        return output;
+    }
 }
