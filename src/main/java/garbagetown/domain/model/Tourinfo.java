@@ -5,7 +5,6 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.joda.time.DateTime;
-import sun.security.krb5.internal.KerberosTime;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

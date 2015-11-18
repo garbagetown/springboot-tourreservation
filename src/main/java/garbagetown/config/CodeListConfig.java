@@ -1,14 +1,6 @@
 package garbagetown.config;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-
-import javax.inject.Inject;
-import javax.sql.DataSource;
-
+import com.google.common.collect.Lists;
 import org.joda.time.DateTime;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,7 +14,9 @@ import org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList;
 import org.terasoluna.gfw.common.date.jodatime.JodaTimeDateFactory;
 import org.terasoluna.gfw.web.codelist.CodeListInterceptor;
 
-import com.google.common.collect.Lists;
+import javax.inject.Inject;
+import javax.sql.DataSource;
+import java.util.*;
 
 /**
  * Created by garbagetown on 10/13/15.

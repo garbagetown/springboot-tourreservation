@@ -2,7 +2,6 @@ package garbagetown.domain.service.tourinfo;
 
 import garbagetown.domain.model.Age;
 import garbagetown.domain.repository.AgeRepository;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
