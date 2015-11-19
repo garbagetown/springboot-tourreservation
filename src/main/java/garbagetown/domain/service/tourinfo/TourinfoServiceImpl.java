@@ -3,7 +3,6 @@ package garbagetown.domain.service.tourinfo;
 import garbagetown.domain.model.Tourinfo;
 import garbagetown.domain.repository.TourinfoCriteria;
 import garbagetown.domain.repository.TourinfoRepository;
-import garbagetown.domain.service.tourinfo.TourinfoService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -19,10 +18,10 @@ import javax.transaction.Transactional;
 public class TourinfoServiceImpl implements TourinfoService {
 
     @Inject
-    TourinfoRepository repository;
+    TourinfoRepository tourinfoRepository;
 
     @Override
     public Page<Tourinfo> search(TourinfoCriteria criteria, Pageable pageable) {
-        return repository.findPageBySearchCriteria(criteria, pageable);
+        return tourinfoRepository.findPageBySearchCriteria(criteria, pageable);
     }
 }
