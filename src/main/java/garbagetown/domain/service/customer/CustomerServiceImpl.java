@@ -2,7 +2,6 @@ package garbagetown.domain.service.customer;
 
 import garbagetown.domain.model.Customer;
 import garbagetown.domain.repository.CustomerRepository;
-import garbagetown.domain.service.customer.CustomerService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.terasoluna.gfw.common.sequencer.Sequencer;
@@ -18,7 +17,7 @@ import javax.transaction.Transactional;
 public class CustomerServiceImpl implements CustomerService {
 
     @Inject
-    CustomerRepository repository;
+    CustomerRepository customerRepository;
 
     @Inject
     Sequencer<String> customerCodeSeq;
@@ -28,7 +27,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer findOne(String customerCode) {
-        return repository.findOne(customerCode);
+        return customerRepository.findOne(customerCode);
     }
 
     @Override
@@ -39,6 +38,6 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setCustomerCode(customerCode);
         customer.setCustomerPass(password);
 
-        return repository.save(customer);
+        return customerRepository.save(customer);
     }
 }
