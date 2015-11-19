@@ -1,7 +1,7 @@
 package garbagetown.app.customer;
 
 import garbagetown.domain.model.Customer;
-import garbagetown.domain.service.CustomerService;
+import garbagetown.domain.service.customer.CustomerService;
 import lombok.extern.slf4j.Slf4j;
 import org.dozer.Mapper;
 import org.joda.time.DateTime;

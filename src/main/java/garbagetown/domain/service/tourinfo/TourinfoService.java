@@ -1,4 +1,4 @@
-package garbagetown.domain.service;
+package garbagetown.domain.service.tourinfo;
 
 import garbagetown.domain.model.Tourinfo;
 import garbagetown.domain.repository.TourinfoCriteria;

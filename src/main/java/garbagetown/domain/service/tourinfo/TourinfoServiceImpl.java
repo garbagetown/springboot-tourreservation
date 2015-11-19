@@ -1,8 +1,9 @@
-package garbagetown.domain.service;
+package garbagetown.domain.service.tourinfo;
 
 import garbagetown.domain.model.Tourinfo;
 import garbagetown.domain.repository.TourinfoCriteria;
 import garbagetown.domain.repository.TourinfoRepository;
+import garbagetown.domain.service.tourinfo.TourinfoService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
