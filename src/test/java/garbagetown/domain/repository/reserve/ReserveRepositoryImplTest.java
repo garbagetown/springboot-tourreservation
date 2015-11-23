@@ -37,7 +37,7 @@ public class ReserveRepositoryImplTest {
     ReserveRepository reserveRepository;
 
     @Test
-    public void testFindByCustomer02() {
+    public void testFindAllByCustomer_notFound() {
         String customerCode = "xxxxxxxx";
 
         Customer customer = new Customer();
