@@ -1,4 +1,4 @@
-package garbagetown.domain.repository;
+package garbagetown.domain.repository.reserve;
 
 import garbagetown.SpringbootTourreservationApplication;
 import garbagetown.domain.model.Customer;
