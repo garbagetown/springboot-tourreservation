@@ -1,4 +1,4 @@
-package garbagetown.domain.repository;
+package garbagetown.domain.repository.tourinfo;
 
 import garbagetown.domain.model.Tourinfo;
 import org.springframework.data.jpa.repository.JpaRepository;

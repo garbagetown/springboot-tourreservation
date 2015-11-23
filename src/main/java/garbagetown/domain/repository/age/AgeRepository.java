@@ -1,4 +1,4 @@
-package garbagetown.domain.repository;
+package garbagetown.domain.repository.age;
 
 import garbagetown.domain.model.Age;
 import org.springframework.data.jpa.repository.JpaRepository;

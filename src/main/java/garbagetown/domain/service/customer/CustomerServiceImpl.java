@@ -1,7 +1,7 @@
 package garbagetown.domain.service.customer;
 
 import garbagetown.domain.model.Customer;
-import garbagetown.domain.repository.CustomerRepository;
+import garbagetown.domain.repository.customer.CustomerRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.terasoluna.gfw.common.sequencer.Sequencer;

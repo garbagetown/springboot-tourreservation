@@ -1,7 +1,7 @@
 package garbagetown.domain.service.tourinfo;
 
 import garbagetown.domain.model.Age;
-import garbagetown.domain.repository.AgeRepository;
+import garbagetown.domain.repository.age.AgeRepository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;

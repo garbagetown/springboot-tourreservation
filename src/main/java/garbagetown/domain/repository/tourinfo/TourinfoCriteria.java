@@ -1,4 +1,4 @@
-package garbagetown.domain.repository;
+package garbagetown.domain.repository.tourinfo;
 
 import lombok.Data;
 

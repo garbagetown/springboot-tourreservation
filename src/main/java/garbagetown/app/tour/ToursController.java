@@ -1,7 +1,7 @@
 package garbagetown.app.tour;
 
 import garbagetown.domain.model.Tourinfo;
-import garbagetown.domain.repository.TourinfoCriteria;
+import garbagetown.domain.repository.tourinfo.TourinfoCriteria;
 import garbagetown.domain.service.tourinfo.TourinfoService;
 import org.dozer.Mapper;
 import org.joda.time.DateTime;

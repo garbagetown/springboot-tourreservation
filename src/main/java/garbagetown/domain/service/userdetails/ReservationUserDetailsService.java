@@ -1,7 +1,7 @@
 package garbagetown.domain.service.userdetails;
 
 import garbagetown.domain.model.Customer;
-import garbagetown.domain.repository.CustomerRepository;
+import garbagetown.domain.repository.customer.CustomerRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

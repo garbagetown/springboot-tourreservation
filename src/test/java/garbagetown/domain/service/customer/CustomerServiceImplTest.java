@@ -1,7 +1,7 @@
 package garbagetown.domain.service.customer;
 
 import garbagetown.domain.model.Customer;
-import garbagetown.domain.repository.CustomerRepository;
+import garbagetown.domain.repository.customer.CustomerRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

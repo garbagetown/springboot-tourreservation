@@ -1,7 +1,7 @@
 package garbagetown.domain.service.tourinfo;
 
 import garbagetown.domain.model.Tourinfo;
-import garbagetown.domain.repository.TourinfoCriteria;
+import garbagetown.domain.repository.tourinfo.TourinfoCriteria;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

@@ -1,7 +1,7 @@
 package garbagetown.domain.service.tourinfo;
 
 import garbagetown.domain.model.Tourinfo;
-import garbagetown.domain.repository.TourinfoRepository;
+import garbagetown.domain.repository.tourinfo.TourinfoRepository;
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
