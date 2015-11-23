@@ -16,7 +16,13 @@ import java.util.List;
  */
 public interface ReserveRepository extends JpaRepository<Reserve, String> {
 
-    @Query("SELECT r FROM Reserve AS r LEFT JOIN FETCH r.tourinfo AS t LEFT JOIN FETCH t.departure LEFT JOIN FETCH t.arrival WHERE r.customer = :customer ORDER BY t.depDay, r.reserveNo")
+    @Query("SELECT r " +
+            "FROM Reserve AS r " +
+            "LEFT JOIN FETCH r.tourinfo AS t " +
+            "LEFT JOIN FETCH t.departure " +
+            "LEFT JOIN FETCH t.arrival " +
+            "WHERE r.customer = :customer " +
+            "ORDER BY t.depDay, r.reserveNo")
     List<Reserve> findAllByCustomer(@Param("customer") Customer customer);
 
     @Query("SELECT SUM(r.adultCount + r.childCount) FROM Reserve r WHERE r.tourinfo = :tourinfo")
