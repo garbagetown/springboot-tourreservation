@@ -38,7 +38,7 @@ public class ReserveRepositoryImplTest {
 
     @Test
     public void testFindAllByCustomer_notFound() {
-        String customerCode = "xxxxxxxx";
+        String customerCode = "99999999";
 
         Customer customer = new Customer();
         customer.setCustomerCode(customerCode);
