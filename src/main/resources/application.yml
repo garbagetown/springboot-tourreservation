@@ -4,10 +4,10 @@ logging.level:
 
 spring:
   datasource:
-    driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://192.168.99.100:5432/tourreserve
-    username: postgres
-    password: P0stgres
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:file:tourreservation;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
   thymeleaf.cache: false
   messages.basename: i18n/application-messages
 

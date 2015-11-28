@@ -1,6 +1,8 @@
 package garbagetown.config;
 
 import org.dozer.DozerBeanMapper;
+import org.h2.server.web.WebServlet;
+import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -59,4 +61,12 @@ public class Config {
     JodaTimeDateFactory jodaTimeDateFactory() {
         return new DefaultJodaTimeDateFactory();
     }
+
+    @Bean
+    public ServletRegistrationBean h2ServletRegistration() {
+        ServletRegistrationBean registration = new ServletRegistrationBean(new WebServlet());
+        registration.addUrlMappings("/console/*");
+        return registration;
+    }
+
 }
