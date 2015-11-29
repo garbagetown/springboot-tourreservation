@@ -2,10 +2,7 @@ package garbagetown.domain.model;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -20,7 +17,8 @@ public class Age implements Serializable {
 
     @Id
     @NotNull
-    @Column(name = "age_code")
+    @Size(max = 1)
+    @Column(name = "age_code", columnDefinition = "char")
     private String ageCode;
 
     @NotNull
@@ -29,6 +27,6 @@ public class Age implements Serializable {
     private String ageName;
 
     @NotNull
-    @Column(name = "age_rate")
+    @Column(name = "age_rate", columnDefinition = "decimal")
     private int ageRate;
 }

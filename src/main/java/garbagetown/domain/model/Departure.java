@@ -19,7 +19,7 @@ public class Departure implements Serializable {
     @Id
     @NotNull
     @Size(min = 1, max = 2)
-    @Column(name = "dep_code")
+    @Column(name = "dep_code", columnDefinition = "char")
     private String depCode;
 
     @NotNull

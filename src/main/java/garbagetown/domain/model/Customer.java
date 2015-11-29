@@ -26,7 +26,7 @@ public class Customer implements Serializable {
     @Id
     @NotNull
     @Size(min = 1, max = 8)
-    @Column(name = "customer_code")
+    @Column(name = "customer_code", columnDefinition = "char")
     private String customerCode;
 
     @NotNull
@@ -45,7 +45,7 @@ public class Customer implements Serializable {
     private String customerPass;
 
     @NotNull
-    @Column(name = "customer_birth")
+    @Column(name = "customer_birth", columnDefinition = "date")
     private Date customerBirth;
 
     @NotNull

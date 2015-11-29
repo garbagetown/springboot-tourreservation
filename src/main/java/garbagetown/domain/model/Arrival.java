@@ -19,7 +19,7 @@ public class Arrival implements Serializable {
     @Id
     @NotNull
     @Size(min = 1, max = 2)
-    @Column(name = "arr_code")
+    @Column(name = "arr_code", columnDefinition = "char")
     private String arrCode;
 
     @NotNull

@@ -19,7 +19,7 @@ public class Accommodation implements Serializable {
     @Id
     @NotNull
     @Size(min = 1, max = 4)
-    @Column(name = "accom_code")
+    @Column(name = "accom_code", columnDefinition = "char")
     private String accomCode;
 
     @NotNull

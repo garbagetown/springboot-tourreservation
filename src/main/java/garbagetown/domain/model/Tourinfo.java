@@ -29,7 +29,7 @@ public class Tourinfo implements Serializable {
     @Id
     @NotNull
     @Size(min = 1, max = 10)
-    @Column(name = "tour_code")
+    @Column(name = "tour_code", columnDefinition = "char")
     private String tourCode;
 
     @NotNull
@@ -39,7 +39,7 @@ public class Tourinfo implements Serializable {
 
     @NotNull
     @Size(min = 1, max = 4)
-    @Column(name = "plan_no")
+    @Column(name = "plan_no", columnDefinition = "char")
     private String planNo;
 
     @NotNull
@@ -48,7 +48,7 @@ public class Tourinfo implements Serializable {
     private String tourName;
 
     @NotNull
-    @Column(name = "tour_days")
+    @Column(name = "tour_days", columnDefinition = "decimal")
     private int tourDays;
 
     @NotNull
@@ -57,15 +57,15 @@ public class Tourinfo implements Serializable {
     private Date depDay;
 
     @NotNull
-    @Column(name = "ava_rec_max")
+    @Column(name = "ava_rec_max", columnDefinition = "decimal")
     private int avaRecMax;
 
     @NotNull
-    @Column(name = "base_price")
+    @Column(name = "base_price", columnDefinition = "decimal")
     private int basePrice;
 
     @NotNull
-    @Column(name = "conductor")
+    @Column(name = "conductor", columnDefinition = "char")
     private String conductor;
 
     @Size(max = 4000)

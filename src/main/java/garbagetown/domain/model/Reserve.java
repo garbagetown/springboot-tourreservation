@@ -28,7 +28,7 @@ public class Reserve implements Serializable {
     @Id
     @NotNull
     @Size(min = 1, max = 8)
-    @Column(name = "reserve_no")
+    @Column(name = "reserve_no", columnDefinition = "char")
     private String reserveNo;
 
     @NotNull
@@ -37,19 +37,19 @@ public class Reserve implements Serializable {
     private Date reservedDay;
 
     @NotNull
-    @Column(name = "adult_count")
+    @Column(name = "adult_count", columnDefinition = "decimal")
     private int adultCount;
 
     @NotNull
-    @Column(name = "child_count")
+    @Column(name = "child_count", columnDefinition = "decimal")
     private int childCount;
 
     @NotNull
-    @Column(name = "transfer")
+    @Column(name = "transfer", columnDefinition = "char")
     private String transfer;
 
     @NotNull
-    @Column(name = "sum_price")
+    @Column(name = "sum_price", columnDefinition = "decimal")
     private int sumPrice;
 
     @Size(max = 1000)
