@@ -95,11 +95,6 @@
             <version>1</version>
         </dependency>
         <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>9.4-1203-jdbc41</version>
-        </dependency>
-        <dependency>
           <groupId>org.webjars</groupId>
           <artifactId>bootstrap</artifactId>
           <version>3.3.5</version>
