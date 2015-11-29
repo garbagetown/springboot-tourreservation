@@ -1,10 +1,15 @@
 package garbagetown.config;
 
+import net.sf.log4jdbc.sql.jdbcapi.DataSourceSpy;
 import org.dozer.DozerBeanMapper;
 import org.h2.server.web.WebServlet;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.embedded.ServletRegistrationBean;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,6 +19,7 @@ import org.terasoluna.gfw.common.sequencer.JdbcSequencer;
 import org.terasoluna.gfw.common.sequencer.Sequencer;
 
 import javax.inject.Inject;
+import javax.sql.DataSource;
 import java.util.Arrays;
 
 /**
@@ -21,6 +27,9 @@ import java.util.Arrays;
  */
 @Configuration
 public class Config {
+
+    @Inject
+    DataSourceProperties dataSourceProperties;
 
     @Inject
     JdbcTemplate jdbcTemplate;
@@ -60,6 +69,24 @@ public class Config {
     @Bean(name = "dateFactory")
     JodaTimeDateFactory jodaTimeDateFactory() {
         return new DefaultJodaTimeDateFactory();
+    }
+
+    @Bean(destroyMethod = "close")
+    @ConfigurationProperties(prefix = DataSourceProperties.PREFIX)
+    DataSource realDataSource() {
+        DataSource dataSource = DataSourceBuilder
+                .create(this.dataSourceProperties.getClassLoader())
+                .url(this.dataSourceProperties.getUrl())
+                .username(this.dataSourceProperties.getUsername())
+                .password(this.dataSourceProperties.getPassword())
+                .build();
+        return dataSource;
+    }
+
+    @Bean
+    @Primary
+    DataSource dataSource() {
+        return new DataSourceSpy(realDataSource());
     }
 
     @Bean

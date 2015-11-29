@@ -99,6 +99,11 @@
           <artifactId>bootstrap</artifactId>
           <version>3.3.5</version>
         </dependency>
+        <dependency>
+            <groupId>org.bgee.log4jdbc-log4j2</groupId>
+            <artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
+            <version>1.16</version>
+        </dependency>
 
         <dependency>
             <groupId>org.terasoluna.gfw</groupId>
