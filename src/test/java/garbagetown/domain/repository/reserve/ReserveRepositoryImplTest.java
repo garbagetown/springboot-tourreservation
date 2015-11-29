@@ -39,10 +39,10 @@ public class ReserveRepositoryImplTest {
     @Test
     public void testFindAllByCustomer() {
 
-        Depature depature = new Depature();
-        depature.setDepCode("91");
-        depature.setDepName("北海道");
-        updateDeparture(depature);
+        Departure departure = new Departure();
+        departure.setDepCode("91");
+        departure.setDepName("北海道");
+        updateDeparture(departure);
 
         Arrival arrival = new Arrival();
         arrival.setArrCode("91");
@@ -63,7 +63,7 @@ public class ReserveRepositoryImplTest {
         tourinfo.setTourDays(1);
         tourinfo.setDepDay(DateTime.now().plusMonths(1).toDate());
         tourinfo.setAvaRecMax(1000);
-        tourinfo.setDeparture(depature);
+        tourinfo.setDeparture(departure);
         tourinfo.setArrival(arrival);
         tourinfo.setAccommodation(accommodation);
         tourinfo.setBasePrice(10000);
@@ -78,7 +78,7 @@ public class ReserveRepositoryImplTest {
         tourinfo2.setTourDays(1);
         tourinfo2.setDepDay(DateTime.now().plusMonths(1).minusDays(1).toDate());
         tourinfo2.setAvaRecMax(1000);
-        tourinfo2.setDeparture(depature);
+        tourinfo2.setDeparture(departure);
         tourinfo2.setArrival(arrival);
         tourinfo2.setAccommodation(accommodation);
         tourinfo2.setBasePrice(10000);
@@ -179,15 +179,15 @@ public class ReserveRepositoryImplTest {
         assertThat(count, is(nullValue()));
     }
 
-    private void updateDeparture(Depature depature) {
+    private void updateDeparture(Departure departure) {
         String sql = "INSERT INTO departure (" +
                 "dep_code, dep_name" +
                 ") VALUES (" +
                 ":depCode, :depName)";
 
         Map<String, Object> paramMap = new HashMap<>();
-        paramMap.put("depCode", depature.getDepCode());
-        paramMap.put("depName", depature.getDepName());
+        paramMap.put("depCode", departure.getDepCode());
+        paramMap.put("depName", departure.getDepName());
 
         jdbcTemplate.update(sql, paramMap);
     }

@@ -85,7 +85,7 @@ public class Tourinfo implements Serializable {
 
     @JoinColumn(name = "dep_code", referencedColumnName = "dep_code")
     @ManyToOne(fetch = FetchType.LAZY)
-    private Depature departure;
+    private Departure departure;
 
     @Transient
     public DateTime getPaymentLimit() {

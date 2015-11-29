@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "departure")
-public class Depature implements Serializable {
+public class Departure implements Serializable {
 
     @Id
     @NotNull
