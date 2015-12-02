@@ -8,7 +8,7 @@ logging.level:
 spring:
   datasource:
     driverClassName: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-    url: jdbc:log4jdbc:h2:file:/tmp/tourreservation;DB_CLOSE_ON_EXIT=FALSE
+    url: jdbc:log4jdbc:h2:file:~/tmp/tourreservation;DB_CLOSE_ON_EXIT=FALSE
     username: sa
     password:
   jpa:
