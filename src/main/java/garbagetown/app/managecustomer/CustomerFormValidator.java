@@ -1,4 +1,4 @@
-package garbagetown.app.customer;
+package garbagetown.app.managecustomer;
 
 import com.google.common.base.Objects;
 import org.joda.time.DateTime;

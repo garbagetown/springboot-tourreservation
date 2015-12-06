@@ -1,4 +1,4 @@
-package garbagetown.app.customer;
+package garbagetown.app.managecustomer;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.Email;

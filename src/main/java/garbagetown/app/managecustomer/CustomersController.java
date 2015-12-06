@@ -1,4 +1,4 @@
-package garbagetown.app.customer;
+package garbagetown.app.managecustomer;
 
 import garbagetown.domain.model.Customer;
 import garbagetown.domain.service.customer.CustomerService;
